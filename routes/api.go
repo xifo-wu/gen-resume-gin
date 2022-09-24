@@ -18,6 +18,8 @@ func RegisterAPIRoutes(r *gin.Engine) {
 			users := new(apiV1.UsersController)
 			// 判断手机是否存在
 			usersGroup.POST("/phone-exist", users.IsPhoneExist)
+			// 判断邮箱是否存在
+			usersGroup.POST("/email-exist", users.IsEmailExist)
 		}
 	}
 }
