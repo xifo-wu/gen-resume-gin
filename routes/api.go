@@ -21,5 +21,12 @@ func RegisterAPIRoutes(r *gin.Engine) {
 			// 判断邮箱是否存在
 			usersGroup.POST("/email-exist", users.IsEmailExist)
 		}
+
+		captchaGroup := v1.Group("/captcha")
+		{
+			captcha := new(apiV1.CaptchaController)
+			// 图片验证码，需要添加限流
+			captchaGroup.GET("", captcha.ShowCaptcha)
+		}
 	}
 }
