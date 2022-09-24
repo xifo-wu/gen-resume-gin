@@ -3,7 +3,7 @@ package v1
 import (
 	"gen-resume/app/models/user"
 	"gen-resume/app/requests"
-	"net/http"
+	"gen-resume/pkg/response"
 
 	"github.com/gin-gonic/gin"
 )
@@ -19,12 +19,8 @@ func (controller *UsersController) IsPhoneExist(c *gin.Context) {
 		return
 	}
 
-	//  检查数据库并返回响应
-	c.JSON(http.StatusOK, gin.H{
-		"success": true,
-		"data": gin.H{
-			"exist": user.IsPhoneExist(request.Phone),
-		},
+	response.Data(c, gin.H{
+		"exist": user.IsPhoneExist(request.Phone),
 	})
 }
 
@@ -35,11 +31,7 @@ func (controller *UsersController) IsEmailExist(c *gin.Context) {
 		return
 	}
 
-	//  检查数据库并返回响应
-	c.JSON(http.StatusOK, gin.H{
-		"success": true,
-		"data": gin.H{
-			"exist": user.IsEmailExist(request.Email),
-		},
+	response.Data(c, gin.H{
+		"exist": user.IsEmailExist(request.Email),
 	})
 }

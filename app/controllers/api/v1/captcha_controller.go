@@ -3,7 +3,7 @@ package v1
 import (
 	"gen-resume/pkg/captcha"
 	"gen-resume/pkg/logger"
-	"net/http"
+	"gen-resume/pkg/response"
 
 	"github.com/gin-gonic/gin"
 )
@@ -17,8 +17,8 @@ func (controller *CaptchaController) ShowCaptcha(c *gin.Context) {
 	id, b64s, err := captcha.NewCaptcha().GenerateCaptcha()
 	// 记录错误日志，因为验证码是用户的入口，出错时应该记 error 等级的日志
 	logger.LogIf(err)
-	// 返回给用户
-	c.JSON(http.StatusOK, gin.H{
+
+	response.Data(c, gin.H{
 		"captcha_id":    id,
 		"captcha_image": b64s,
 	})

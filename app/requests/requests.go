@@ -2,7 +2,7 @@
 package requests
 
 import (
-	"net/http"
+	"gen-resume/pkg/response"
 
 	"github.com/gin-gonic/gin"
 	"github.com/thedevsaddam/govalidator"
@@ -19,11 +19,7 @@ type ValidatorFunc func(interface{}, *gin.Context) map[string][]string
 func Validate(c *gin.Context, obj interface{}, handler ValidatorFunc) bool {
 	// 1. 解析请求，支持 JSON 数据、表单请求和 URL Query
 	if err := c.ShouldBind(obj); err != nil {
-		c.AbortWithStatusJSON(http.StatusUnprocessableEntity, gin.H{
-			"success": false,
-			"message": "请求解析错误，请确认请求格式是否正确。上传文件请使用 multipart 标头，参数请使用 JSON 格式。",
-		})
-
+		response.BadRequest(c, err, "请求解析错误，请确认请求格式是否正确。上传文件请使用 multipart 标头，参数请使用 JSON 格式。")
 		return false
 	}
 
@@ -32,15 +28,8 @@ func Validate(c *gin.Context, obj interface{}, handler ValidatorFunc) bool {
 
 	// errs 返回长度等于零即通过，大于 0 即有错误发生
 	if len(errs) > 0 {
-		// 验证失败，返回 422 状态码和错误信息
-		// 只返回第一个错误
-		for _, v := range errs {
-			c.AbortWithStatusJSON(http.StatusUnprocessableEntity, gin.H{
-				"success": false,
-				"message": v[0],
-			})
-			return false
-		}
+		response.ValidationError(c, errs)
+		return false
 	}
 
 	return true
