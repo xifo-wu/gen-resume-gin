@@ -37,5 +37,6 @@ func RegisterAPIRoutes(r *gin.Engine) {
 		authGroup.POST("/verify-codes/phone", verifyCode.SendUsingPhone)
 		authGroup.POST("/verify-codes/email", verifyCode.SendUsingEmail)
 		authGroup.POST("/sign-up/using-phone", signUpController.SignUpUsingPhone)
+		authGroup.POST("/sign-up/using-email", signUpController.SignUpUsingEmail)
 	}
 }
