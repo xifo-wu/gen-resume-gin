@@ -3,6 +3,7 @@ package routes
 
 import (
 	apiV1 "gen-resume/app/controllers/api/v1"
+	"gen-resume/app/controllers/api/v1/auth"
 
 	"github.com/gin-gonic/gin"
 )
@@ -28,5 +29,10 @@ func RegisterAPIRoutes(r *gin.Engine) {
 			// 图片验证码，需要添加限流
 			captchaGroup.GET("", captcha.ShowCaptcha)
 		}
+
+		authGroup := v1.Group("/auth")
+		verifyCode := new(auth.VerifyCodeController)
+		authGroup.POST("/verify-codes/phone", verifyCode.SendUsingPhone)
+
 	}
 }
