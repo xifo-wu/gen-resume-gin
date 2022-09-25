@@ -1,6 +1,7 @@
 package mail
 
 import (
+	"crypto/tls"
 	"fmt"
 	"gen-resume/pkg/logger"
 	"net/smtp"
@@ -26,7 +27,7 @@ func (s *SMTP) Send(email Email, config map[string]string) bool {
 
 	logger.DebugJSON("发送邮件", "发件详情", e)
 
-	err := e.Send(
+	err := e.SendWithTLS(
 		fmt.Sprintf("%v:%v", config["host"], config["port"]),
 
 		smtp.PlainAuth(
@@ -35,6 +36,9 @@ func (s *SMTP) Send(email Email, config map[string]string) bool {
 			config["password"],
 			config["host"],
 		),
+		&tls.Config{
+			ServerName: config["host"],
+		},
 	)
 	if err != nil {
 		logger.ErrorString("发送邮件", "发件出错", err.Error())
