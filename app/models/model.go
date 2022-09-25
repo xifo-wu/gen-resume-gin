@@ -3,6 +3,8 @@ package models
 
 import (
 	"time"
+
+	"github.com/spf13/cast"
 )
 
 // BaseModel 模型基类
@@ -19,4 +21,9 @@ type CommonTimestampsField struct {
 type SoftDestroyField struct {
 	DeletedAt time.Time `gorm:"column:deleted_at;index;" json:"deletedAt,omitempty"`
 	IsDeleted bool      `gorm:"column:is_deleted;index;" json:"isDeleted,omitempty"`
+}
+
+// GetStringID 获取 ID 的字符串格式
+func (b BaseModel) GetStringID() string {
+	return cast.ToString(b.ID)
 }
