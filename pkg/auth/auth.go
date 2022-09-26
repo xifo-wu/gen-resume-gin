@@ -3,6 +3,9 @@ package auth
 import (
 	"errors"
 	"gen-resume/app/models/user"
+	"gen-resume/pkg/logger"
+
+	"github.com/gin-gonic/gin"
 )
 
 func Attempt(login string, password string) (user.User, error) {
@@ -35,4 +38,20 @@ func LoginByEmail(email string) (user.User, error) {
 	}
 
 	return userModel, nil
+}
+
+// CurrentUser 从 gin.context 中获取当前登录用户
+func CurrentUser(c *gin.Context) user.User {
+	userModel, ok := c.MustGet("current_user").(user.User)
+	if !ok {
+		logger.LogIf(errors.New("无法获取用户"))
+		return user.User{}
+	}
+	// db is now a *DB value
+	return userModel
+}
+
+// CurrentUserID 从 gin.context 中获取当前登录用户 ID
+func CurrentUserID(c *gin.Context) string {
+	return c.GetString("current_user_id")
 }

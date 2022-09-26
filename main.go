@@ -3,9 +3,12 @@ package main
 import (
 	"flag"
 	"fmt"
+	"gen-resume/app/middlewares"
 	"gen-resume/bootstrap"
 	bootstrapConfig "gen-resume/config"
+	"gen-resume/pkg/auth"
 	"gen-resume/pkg/config"
+	"gen-resume/pkg/response"
 
 	"github.com/gin-gonic/gin"
 )
@@ -42,6 +45,11 @@ func main() {
 
 	// 初始化路由绑定
 	bootstrap.SetupRoute(router)
+
+	router.GET("/test_auth", middlewares.AuthJWT(), func(c *gin.Context) {
+		userModel := auth.CurrentUser(c)
+		response.Data(c, userModel)
+	})
 
 	err := router.Run(":" + config.Get("app.port"))
 	if err != nil {
