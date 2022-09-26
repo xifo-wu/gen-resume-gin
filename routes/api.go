@@ -4,6 +4,7 @@ package routes
 import (
 	apiV1 "gen-resume/app/controllers/api/v1"
 	"gen-resume/app/controllers/api/v1/auth"
+	"gen-resume/app/middlewares"
 
 	"github.com/gin-gonic/gin"
 )
@@ -36,14 +37,14 @@ func RegisterAPIRoutes(r *gin.Engine) {
 		loginController := new(auth.LoginController)
 		passwordController := new(auth.PasswordController)
 
-		authGroup.POST("/verify-codes/phone", verifyCode.SendUsingPhone)
-		authGroup.POST("/verify-codes/email", verifyCode.SendUsingEmail)
-		authGroup.POST("/sign-up/using-phone", signUpController.SignUpUsingPhone)
-		authGroup.POST("/sign-up/using-email", signUpController.SignUpUsingEmail)
+		authGroup.POST("/verify-codes/phone", middlewares.LimitPerRoute("8-D"), verifyCode.SendUsingPhone)
+		authGroup.POST("/verify-codes/email", middlewares.LimitPerRoute("8-D"), verifyCode.SendUsingEmail)
+		authGroup.POST("/sign-up/using-phone", middlewares.LimitPerRoute("8-D"), signUpController.SignUpUsingPhone)
+		authGroup.POST("/sign-up/using-email", middlewares.LimitPerRoute("8-D"), signUpController.SignUpUsingEmail)
 		authGroup.POST("/login/using-phone", loginController.LoginByPhone)
-		authGroup.POST("/login/using-password", loginController.LoginByPassword)
+		authGroup.POST("/login/using-password", middlewares.LimitPerRoute("10-M"), loginController.LoginByPassword)
 		authGroup.POST("/login/refresh-token", loginController.RefreshToken)
-		authGroup.POST("/password-reset/using-phone", passwordController.ResetByPhone)
-		authGroup.POST("/password-reset/using-email", passwordController.ResetByEmail)
+		authGroup.POST("/password-reset/using-phone", middlewares.LimitPerRoute("8-D"), passwordController.ResetByPhone)
+		authGroup.POST("/password-reset/using-email", middlewares.LimitPerRoute("8-D"), passwordController.ResetByEmail)
 	}
 }
