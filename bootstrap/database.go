@@ -3,7 +3,6 @@ package bootstrap
 import (
 	"errors"
 	"fmt"
-	"gen-resume/app/models/user"
 	"gen-resume/pkg/config"
 	"gen-resume/pkg/database"
 	"gen-resume/pkg/logger"
@@ -49,6 +48,4 @@ func SetupDB() {
 	database.SqlDB.SetMaxIdleConns(config.GetInt("database.mysql.max_idle_connections"))
 	// 设置每个链接的过期时间
 	database.SqlDB.SetConnMaxLifetime(time.Duration(config.GetInt("database.mysql.max_life_seconds")) * time.Second)
-
-	database.DB.AutoMigrate(&user.User{})
 }
