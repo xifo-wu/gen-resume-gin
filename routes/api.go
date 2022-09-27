@@ -4,6 +4,7 @@ package routes
 import (
 	apiV1 "gen-resume/app/controllers/api/v1"
 	"gen-resume/app/controllers/api/v1/auth"
+	"gen-resume/app/controllers/api/v1/manager"
 	"gen-resume/app/middlewares"
 
 	"github.com/gin-gonic/gin"
@@ -54,5 +55,16 @@ func RegisterAPIRoutes(r *gin.Engine) {
 		authGroup.POST("/password-reset/using-phone", middlewares.LimitPerRoute("8-D"), passwordController.ResetByPhone)
 		authGroup.POST("/password-reset/using-email", middlewares.LimitPerRoute("8-D"), passwordController.ResetByEmail)
 
+		// Manager API
+		managerGroup := v1.Group("/manager")
+		managerGroup.Use(middlewares.AuthJWT())
+		{
+			// 用户管理
+			managerUsersController := new(manager.UsersController)
+			managerUsersGroup := managerGroup.Group("/users")
+			{
+				managerUsersGroup.GET("", managerUsersController.Index)
+			}
+		}
 	}
 }
