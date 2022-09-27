@@ -16,12 +16,12 @@ import (
 
 // Paging 分页数据
 type Paging struct {
-	CurrentPage int    // 当前页
-	PerPage     int    // 每页条数
-	TotalPage   int    // 总页数
-	TotalCount  int64  // 总条数
-	NextPageURL string // 下一页的链接
-	PrevPageURL string // 上一页的链接
+	CurrentPage int    `json:"currentPage"` // 当前页
+	PerPage     int    `json:"perPage"`     // 每页条数
+	TotalPage   int    `json:"totalPage"`   // 总页数
+	TotalCount  int64  `json:"totalCount"`  // 总条数
+	NextPageURL string `json:"nextPageURL"` // 下一页的链接
+	PrevPageURL string `json:"prevPageURL"` // 上一页的链接
 }
 
 // Paginator 分页操作类
@@ -107,14 +107,14 @@ func (p *Paginator) initProperties(perPage int, baseURL string) {
 
 func (p Paginator) getPerPage(perPage int) int {
 	// 优先使用请求 per_page 参数
-	queryPerpage := p.ctx.Query(config.Get("paging.url_query_per_page"))
-	if len(queryPerpage) > 0 {
-		perPage = cast.ToInt(queryPerpage)
+	queryPerPage := p.ctx.Query(config.Get("paging.url_query_per_page"))
+	if len(queryPerPage) > 0 {
+		perPage = cast.ToInt(queryPerPage)
 	}
 
 	// 没有传参，使用默认
 	if perPage <= 0 {
-		perPage = config.GetInt("paging.perpage")
+		perPage = config.GetInt("paging.perPage")
 	}
 
 	return perPage

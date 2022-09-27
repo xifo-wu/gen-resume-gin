@@ -23,7 +23,7 @@ func init() {
 
 			// URL 中用以分辨每页条数的参数
 			// 此值若修改需一并修改请求验证规则
-			"url_query_per_page": "per_page",
+			"url_query_per_page": "perPage",
 		}
 	})
 }
