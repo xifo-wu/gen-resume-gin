@@ -3,6 +3,7 @@ package v1
 import (
 	"gen-resume/app/models/user"
 	"gen-resume/app/requests"
+	"gen-resume/pkg/auth"
 	"gen-resume/pkg/response"
 
 	"github.com/gin-gonic/gin"
@@ -10,6 +11,12 @@ import (
 
 type UsersController struct {
 	BaseAPIController
+}
+
+// CurrentUser 当前登录用户信息
+func (ctrl *UsersController) CurrentUser(c *gin.Context) {
+	userModel := auth.CurrentUser(c)
+	response.Data(c, userModel)
 }
 
 // IsPhoneExist
