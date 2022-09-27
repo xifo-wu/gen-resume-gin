@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"gen-resume/app/cmd"
+	"gen-resume/app/cmd/make"
 	"gen-resume/bootstrap"
 	bootstrapConfig "gen-resume/config"
 	"gen-resume/pkg/config"
@@ -49,6 +50,7 @@ func main() {
 		cmd.CmdServe,
 		cmd.CmdKey,
 		cmd.CmdPlay,
+		make.CmdMake,
 	)
 
 	// 配置默认运行 Web 服务
