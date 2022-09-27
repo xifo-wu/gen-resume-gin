@@ -51,6 +51,7 @@ func main() {
 		cmd.CmdKey,
 		cmd.CmdPlay,
 		cmd.CmdMigrate,
+		cmd.CmdDBSeed,
 		make.CmdMake,
 	)
 
