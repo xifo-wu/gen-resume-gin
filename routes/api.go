@@ -30,6 +30,8 @@ func RegisterAPIRoutes(r *gin.Engine) {
 			publicUserGroup.POST("/email-exist", users.IsEmailExist)
 			// 当前用户
 			authorizedUserGroup.GET("/current", users.CurrentUser)
+			// 修改密码
+			authorizedUserGroup.PUT("/password", users.UpdatePassword)
 		}
 
 		captchaGroup := v1.Group("/captcha")

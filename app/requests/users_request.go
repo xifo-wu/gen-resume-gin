@@ -2,6 +2,8 @@
 package requests
 
 import (
+	"gen-resume/app/requests/validators"
+
 	"github.com/gin-gonic/gin"
 	"github.com/thedevsaddam/govalidator"
 )
@@ -49,4 +51,39 @@ func UsersEmailExist(data interface{}, c *gin.Context) map[string][]string {
 	}
 
 	return validate(data, rules, messages)
+}
+
+type UserUpdatePasswordRequest struct {
+	Password           string `valid:"password" json:"password,omitempty"`
+	NewPassword        string `valid:"newPassword" json:"newPassword,omitempty"`
+	NewPasswordConfirm string `valid:"newPasswordConfirm" json:"newPasswordConfirm,omitempty"`
+}
+
+func UserUpdatePassword(data interface{}, c *gin.Context) map[string][]string {
+	rules := govalidator.MapData{
+		"password":           []string{"required", "min:6"},
+		"newPassword":        []string{"required", "min:6"},
+		"newPasswordConfirm": []string{"required", "min:6"},
+	}
+	messages := govalidator.MapData{
+		"password": []string{
+			"required:密码为必填项",
+			"min:密码长度需大于 6",
+		},
+		"newPassword": []string{
+			"required:密码为必填项",
+			"min:密码长度需大于 6",
+		},
+		"newPasswordConfirm": []string{
+			"required:确认密码框为必填项",
+			"min:确认密码长度需大于 6",
+		},
+	}
+
+	// 确保 confirm 密码正确
+	errs := validate(data, rules, messages)
+	_data := data.(*UserUpdatePasswordRequest)
+	errs = validators.ValidatePasswordConfirm(_data.NewPassword, _data.NewPasswordConfirm, errs)
+
+	return errs
 }
