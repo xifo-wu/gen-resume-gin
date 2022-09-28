@@ -25,3 +25,19 @@ go run main.go migrate up
 # 发现写的不对？可以执行回滚
 go run main.go migrate down
 ```
+
+### 生成请求验证器
+
+```bash
+# example
+# go run main.go make request resume
+go run main.go make request [fileName]
+```
+
+### 生成 API controller
+
+```bash
+# example
+# go run main.go make api-controller v1/resume
+go run main.go make api-controller [apiControllerName]
+```
