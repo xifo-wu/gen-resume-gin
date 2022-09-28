@@ -3,15 +3,18 @@ package resume
 
 import (
 	"gen-resume/app/models"
+	"gen-resume/app/models/user"
 	"gen-resume/pkg/database"
 )
 
 type Resume struct {
 	models.BaseModel
 
-	Name       string `json:"name"`
-	Slug       string `json:"slug"`
-	LayoutType string `json:"layoutType"`
+	Name       string    `json:"name"`
+	Slug       string    `json:"slug"`
+	LayoutType string    `json:"layoutType"`
+	UserID     string    `json:"-"`
+	User       user.User `json:"user"`
 
 	models.CommonTimestampsField
 }

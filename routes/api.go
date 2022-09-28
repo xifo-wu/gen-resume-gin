@@ -55,6 +55,19 @@ func RegisterAPIRoutes(r *gin.Engine) {
 		authGroup.POST("/password-reset/using-phone", middlewares.LimitPerRoute("8-D"), passwordController.ResetByPhone)
 		authGroup.POST("/password-reset/using-email", middlewares.LimitPerRoute("8-D"), passwordController.ResetByEmail)
 
+		// 客户端接口
+
+		// 简历接口
+		resumeController := new(apiV1.ResumesController)
+		resumeGroup := authorized.Group("/resumes")
+		{
+			resumeGroup.POST("", resumeController.Store)
+			resumeGroup.GET("", resumeController.Index)
+			resumeGroup.GET("/:id", resumeController.Show)
+			resumeGroup.PUT("/:id", resumeController.Update)
+			resumeGroup.DELETE("/:id", resumeController.Delete)
+		}
+
 		// Manager API
 		managerGroup := v1.Group("/manager")
 		managerGroup.Use(middlewares.AuthJWT())
