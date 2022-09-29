@@ -1,6 +1,8 @@
 package user
 
 import (
+	"crypto/md5"
+	"fmt"
 	"gen-resume/pkg/hash"
 
 	"gorm.io/gorm"
@@ -12,5 +14,12 @@ func (userModel *User) BeforeSave(tx *gorm.DB) (err error) {
 	if !hash.BcryptIsHashed(userModel.Password) {
 		userModel.Password = hash.BcryptHash(userModel.Password)
 	}
+
+	if len(userModel.Email) == 0 {
+		dataMD5Sum := md5.Sum([]byte(userModel.Email))
+		md5str := fmt.Sprintf("%x", dataMD5Sum[:])
+		userModel.Gravatar = "https://www.gravatar.com/avatar/" + md5str
+	}
+
 	return
 }
