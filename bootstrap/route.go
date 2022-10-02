@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"strings"
 
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
 
@@ -23,9 +24,14 @@ func SetupRoute(router *gin.Engine) {
 }
 
 func registerGlobalMiddleWare(router *gin.Engine) {
+	corsConfig := cors.DefaultConfig()
+	corsConfig.AllowOrigins = []string{"*"}
+	corsConfig.AddAllowHeaders("Authorization")
+
 	router.Use(
 		middlewares.Logger(),
 		middlewares.Recovery(),
+		cors.New(corsConfig),
 	)
 }
 
