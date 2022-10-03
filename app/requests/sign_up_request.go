@@ -10,7 +10,7 @@ import (
 // SignUpUsingPhoneRequest 通过手机注册的请求信息
 type SignUpUsingPhoneRequest struct {
 	Phone           string `json:"phone,omitempty" valid:"phone"`
-	VerifyCode      string `json:"verify_code,omitempty" valid:"verify_code"`
+	VerifyCode      string `json:"verifyCode,omitempty" valid:"verifyCode"`
 	Username        string `valid:"username" json:"username"`
 	Password        string `valid:"password" json:"password,omitempty"`
 	PasswordConfirm string `valid:"password_confirm" json:"password_confirm,omitempty"`
@@ -23,7 +23,7 @@ func SignUpUsingPhone(data interface{}, c *gin.Context) map[string][]string {
 		"username":         []string{"required", "alpha_num", "between:3,20", "not_exists:users,username"},
 		"password":         []string{"required", "min:6"},
 		"password_confirm": []string{"required"},
-		"verify_code":      []string{"required", "digits:6"},
+		"verifyCode":       []string{"required", "digits:6"},
 	}
 
 	messages := govalidator.MapData{
@@ -43,7 +43,7 @@ func SignUpUsingPhone(data interface{}, c *gin.Context) map[string][]string {
 		"password_confirm": []string{
 			"required:确认密码为必填项",
 		},
-		"verify_code": []string{
+		"verifyCode": []string{
 			"required:验证码必填",
 			"digits:验证码长度必须为 6 位的数字",
 		},
@@ -61,7 +61,7 @@ func SignUpUsingPhone(data interface{}, c *gin.Context) map[string][]string {
 // SignUpUsingEmailRequest 通过邮箱注册的请求信息
 type SignUpUsingEmailRequest struct {
 	Email           string `json:"email,omitempty" valid:"email"`
-	VerifyCode      string `json:"verify_code,omitempty" valid:"verify_code"`
+	VerifyCode      string `json:"verifyCode,omitempty" valid:"verifyCode"`
 	Username        string `valid:"username" json:"username"`
 	Password        string `valid:"password" json:"password,omitempty"`
 	PasswordConfirm string `valid:"password_confirm" json:"password_confirm,omitempty"`
@@ -74,7 +74,7 @@ func SignUpUsingEmail(data interface{}, c *gin.Context) map[string][]string {
 		"username":         []string{"required", "alpha_num", "between:3,20", "not_exists:users,username"},
 		"password":         []string{"required", "min:6"},
 		"password_confirm": []string{"required"},
-		"verify_code":      []string{"required", "digits:6"},
+		"verifyCode":       []string{"required", "digits:6"},
 	}
 
 	messages := govalidator.MapData{
@@ -97,7 +97,7 @@ func SignUpUsingEmail(data interface{}, c *gin.Context) map[string][]string {
 		"password_confirm": []string{
 			"required:确认密码框为必填项",
 		},
-		"verify_code": []string{
+		"verifyCode": []string{
 			"required:验证码答案必填",
 			"digits:验证码长度必须为 6 位的数字",
 		},
