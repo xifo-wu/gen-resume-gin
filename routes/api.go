@@ -56,7 +56,7 @@ func RegisterAPIRoutes(r *gin.Engine) {
 		passwordController := new(auth.PasswordController)
 
 		authGroup.POST("/verify-codes/phone", middlewares.LimitPerRoute("8-D"), verifyCode.SendUsingPhone)
-		authGroup.POST("/verify-codes/email", middlewares.LimitPerRoute("8-D"), verifyCode.SendUsingEmail)
+		authGroup.POST("/verify-codes/email", middlewares.LimitPerRoute("1-M"), verifyCode.SendUsingEmail)
 		authGroup.POST("/sign-up/using-phone", middlewares.LimitPerRoute("8-D"), signUpController.SignUpUsingPhone)
 		authGroup.POST("/sign-up/using-email", middlewares.LimitPerRoute("8-D"), signUpController.SignUpUsingEmail)
 		authGroup.POST("/login/using-phone", loginController.LoginByPhone)
