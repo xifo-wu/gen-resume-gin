@@ -2,8 +2,10 @@ package requests
 
 import (
 	"gen-resume/app/requests/validators"
+	"strings"
 
 	"github.com/gin-gonic/gin"
+	"github.com/google/uuid"
 	"github.com/thedevsaddam/govalidator"
 )
 
@@ -13,17 +15,17 @@ type SignUpUsingPhoneRequest struct {
 	VerifyCode      string `json:"verifyCode,omitempty" valid:"verifyCode"`
 	Username        string `valid:"username" json:"username"`
 	Password        string `valid:"password" json:"password,omitempty"`
-	PasswordConfirm string `valid:"password_confirm" json:"password_confirm,omitempty"`
+	PasswordConfirm string `valid:"passwordConfirm" json:"passwordConfirm,omitempty"`
 }
 
 func SignUpUsingPhone(data interface{}, c *gin.Context) map[string][]string {
 
 	rules := govalidator.MapData{
-		"phone":            []string{"required", "digits:11", "not_exists:users,phone"},
-		"username":         []string{"required", "alpha_num", "between:3,20", "not_exists:users,username"},
-		"password":         []string{"required", "min:6"},
-		"password_confirm": []string{"required"},
-		"verifyCode":       []string{"required", "digits:6"},
+		"phone":           []string{"required", "digits:11", "not_exists:users,phone"},
+		"username":        []string{"required", "alpha_num", "between:3,32", "not_exists:users,username"},
+		"password":        []string{"required", "min:6"},
+		"passwordConfirm": []string{"required"},
+		"verifyCode":      []string{"required", "digits:6"},
 	}
 
 	messages := govalidator.MapData{
@@ -34,13 +36,13 @@ func SignUpUsingPhone(data interface{}, c *gin.Context) map[string][]string {
 		"username": []string{
 			"required:用户名为必填项",
 			"alpha_num:用户名格式错误，只允许数字和英文",
-			"between:用户名长度需在 3~20 之间",
+			"between:用户名长度需在 3~32 之间",
 		},
 		"password": []string{
 			"required:密码为必填项",
 			"min:密码长度需大于 6",
 		},
-		"password_confirm": []string{
+		"passwordConfirm": []string{
 			"required:确认密码为必填项",
 		},
 		"verifyCode": []string{
@@ -64,17 +66,17 @@ type SignUpUsingEmailRequest struct {
 	VerifyCode      string `json:"verifyCode,omitempty" valid:"verifyCode"`
 	Username        string `valid:"username" json:"username"`
 	Password        string `valid:"password" json:"password,omitempty"`
-	PasswordConfirm string `valid:"password_confirm" json:"password_confirm,omitempty"`
+	PasswordConfirm string `valid:"passwordConfirm" json:"passwordConfirm,omitempty"`
 }
 
 func SignUpUsingEmail(data interface{}, c *gin.Context) map[string][]string {
 
 	rules := govalidator.MapData{
-		"email":            []string{"required", "min:4", "max:30", "email", "not_exists:users,email"},
-		"username":         []string{"required", "alpha_num", "between:3,20", "not_exists:users,username"},
-		"password":         []string{"required", "min:6"},
-		"password_confirm": []string{"required"},
-		"verifyCode":       []string{"required", "digits:6"},
+		"email":           []string{"required", "min:4", "max:30", "email", "not_exists:users,email"},
+		"username":        []string{"required", "alpha_num", "between:3,32", "not_exists:users,username"},
+		"password":        []string{"required", "min:6"},
+		"passwordConfirm": []string{"required"},
+		"verifyCode":      []string{"required", "digits:6"},
 	}
 
 	messages := govalidator.MapData{
@@ -88,13 +90,13 @@ func SignUpUsingEmail(data interface{}, c *gin.Context) map[string][]string {
 		"username": []string{
 			"required:用户名为必填项",
 			"alpha_num:用户名格式错误，只允许数字和英文",
-			"between:用户名长度需在 3~20 之间",
+			"between:用户名长度需在 3~32 之间",
 		},
 		"password": []string{
 			"required:密码为必填项",
 			"min:密码长度需大于 6",
 		},
-		"password_confirm": []string{
+		"passwordConfirm": []string{
 			"required:确认密码框为必填项",
 		},
 		"verifyCode": []string{
@@ -103,9 +105,16 @@ func SignUpUsingEmail(data interface{}, c *gin.Context) map[string][]string {
 		},
 	}
 
-	errs := validate(data, rules, messages)
-
 	_data := data.(*SignUpUsingEmailRequest)
+
+	if len(_data.Username) == 0 {
+		newID := uuid.New().String()
+
+		_data.Username = strings.Replace(newID, "-", "", -1)
+	}
+
+	errs := validate(_data, rules, messages)
+
 	errs = validators.ValidatePasswordConfirm(_data.Password, _data.PasswordConfirm, errs)
 	errs = validators.ValidateVerifyCode(_data.Email, _data.VerifyCode, errs)
 
