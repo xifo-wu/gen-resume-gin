@@ -56,6 +56,7 @@ func (sc *SignUpController) SignUpUsingEmail(c *gin.Context) {
 	// 2. 验证成功，创建数据
 	userModel := user.User{
 		Username: request.Username,
+		Nickname: request.Username,
 		Email:    request.Email,
 		Password: request.Password,
 	}
