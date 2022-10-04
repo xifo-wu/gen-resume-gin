@@ -15,7 +15,7 @@ func (userModel *User) BeforeSave(tx *gorm.DB) (err error) {
 		userModel.Password = hash.BcryptHash(userModel.Password)
 	}
 
-	if len(userModel.Email) == 0 {
+	if len(userModel.Email) != 0 {
 		dataMD5Sum := md5.Sum([]byte(userModel.Email))
 		md5str := fmt.Sprintf("%x", dataMD5Sum[:])
 		userModel.Gravatar = "https://www.gravatar.com/avatar/" + md5str
