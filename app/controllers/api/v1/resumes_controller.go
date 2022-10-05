@@ -1,7 +1,6 @@
 package v1
 
 import (
-	"fmt"
 	"gen-resume/app/models/resume"
 	"gen-resume/app/policies"
 	"gen-resume/app/requests"
@@ -12,6 +11,7 @@ import (
 	"gen-resume/pkg/response"
 
 	"github.com/gin-gonic/gin"
+	"gorm.io/gorm/clause"
 )
 
 type ResumesController struct {
@@ -42,13 +42,14 @@ func (ctrl *ResumesController) Index(c *gin.Context) {
 }
 
 func (ctrl *ResumesController) Show(c *gin.Context) {
-	resumeModel := resume.Get(c.Param("id"))
+	var resumeModel resume.Resume
+	database.DB.Model(&resume.Resume{}).Preload(clause.Associations).Where("slug = ?", c.Param("id")).First(&resumeModel)
+
 	if resumeModel.ID == 0 {
 		response.Abort404(c)
 		return
 	}
 
-	fmt.Println(resumeModel.User)
 	response.Data(c, resumeModel)
 }
 
