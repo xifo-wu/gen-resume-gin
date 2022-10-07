@@ -2,6 +2,7 @@ package v1
 
 import (
 	"gen-resume/app/models/resume"
+	"gen-resume/app/models/resume_basic"
 	"gen-resume/app/policies"
 	"gen-resume/app/requests"
 	"gen-resume/pkg/app"
@@ -59,11 +60,19 @@ func (ctrl *ResumesController) Store(c *gin.Context) {
 		return
 	}
 
+	currentUser := auth.CurrentUser(c)
+
 	resumeModel := resume.Resume{
 		Name:       request.Name,
 		Slug:       request.Slug,
 		LayoutType: request.LayoutType,
 		UserID:     auth.CurrentUserID(c),
+		// 创建简历基础信息关联
+		ResumeBasic: resume_basic.ResumeBasic{
+			Name:   currentUser.Nickname,
+			Email:  currentUser.Email,
+			Mobile: currentUser.Phone,
+		},
 	}
 
 	resumeModel.Create()
