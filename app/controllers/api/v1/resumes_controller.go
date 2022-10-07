@@ -63,10 +63,11 @@ func (ctrl *ResumesController) Store(c *gin.Context) {
 	currentUser := auth.CurrentUser(c)
 
 	resumeModel := resume.Resume{
-		Name:       request.Name,
-		Slug:       request.Slug,
-		LayoutType: request.LayoutType,
-		UserID:     auth.CurrentUserID(c),
+		Name:        request.Name,
+		Slug:        request.Slug,
+		LayoutType:  request.LayoutType,
+		UserID:      auth.CurrentUserID(c),
+		ModuleOrder: "resumeBasic",
 		// 创建简历基础信息关联
 		ResumeBasic: resume_basic.ResumeBasic{
 			Name:   currentUser.Nickname,

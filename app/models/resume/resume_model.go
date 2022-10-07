@@ -16,6 +16,7 @@ type Resume struct {
 	LayoutType  string                   `json:"layoutType"`
 	UserID      string                   `json:"-"`
 	User        user.User                `json:"user"`
+	ModuleOrder string                   `json:"moduleOrder"`
 	ResumeBasic resume_basic.ResumeBasic `json:"resumeBasic"`
 
 	models.CommonTimestampsField
