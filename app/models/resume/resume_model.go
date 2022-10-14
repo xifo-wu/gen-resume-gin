@@ -3,6 +3,7 @@ package resume
 
 import (
 	"gen-resume/app/models"
+	"gen-resume/app/models/education"
 	"gen-resume/app/models/resume_basic"
 	"gen-resume/app/models/user"
 	"gen-resume/pkg/database"
@@ -11,13 +12,14 @@ import (
 type Resume struct {
 	models.BaseModel
 
-	Name        string                   `json:"name"`
-	Slug        string                   `json:"slug"`
-	LayoutType  string                   `json:"layoutType"`
-	UserID      string                   `json:"-"`
-	User        user.User                `json:"user"`
-	ModuleOrder string                   `json:"moduleOrder"`
-	ResumeBasic resume_basic.ResumeBasic `json:"resumeBasic"`
+	Name        string                    `json:"name"`
+	Slug        string                    `json:"slug"`
+	LayoutType  string                    `json:"layoutType"`
+	UserID      string                    `json:"-"`
+	User        user.User                 `json:"user"`
+	ModuleOrder string                    `json:"moduleOrder"`
+	ResumeBasic *resume_basic.ResumeBasic `json:"resumeBasic,omitempty"`
+	Education   *education.Education      `json:"education,omitempty"`
 
 	models.CommonTimestampsField
 }

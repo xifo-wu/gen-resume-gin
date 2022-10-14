@@ -73,9 +73,13 @@ func RegisterAPIRoutes(r *gin.Engine) {
 		{
 			resumeGroup.POST("", resumeController.Store)
 			resumeGroup.GET("", resumeController.Index)
-			resumeGroup.GET("/:id", resumeController.Show)
-			resumeGroup.PUT("/:id", resumeController.Update)
-			resumeGroup.DELETE("/:id", resumeController.Delete)
+			resumeGroup.GET("/:slug", resumeController.Show)
+			resumeGroup.PUT("/:slug", resumeController.Update)
+			resumeGroup.PUT("/:slug/add-education", resumeController.AddEducation)
+			resumeGroup.PUT("/:slug/update-resume-basic", resumeController.UpdateResumeBasic)
+			resumeGroup.PUT("/:slug/update-education", resumeController.UpdateEducation)
+
+			resumeGroup.DELETE("/:slug", resumeController.Delete)
 		}
 
 		// Manager API

@@ -39,3 +39,7 @@ func ResumeSave(data interface{}, c *gin.Context) map[string][]string {
 
 	return validate(data, rules, messages)
 }
+
+type ResumeBasicRequest struct {
+	Name string `json:"name"`
+}
