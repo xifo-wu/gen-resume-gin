@@ -3,18 +3,20 @@ package education
 
 import (
 	"gen-resume/app/models"
+	"gen-resume/app/models/education_detail"
 	"gen-resume/pkg/database"
 )
 
 type Education struct {
 	models.BaseModel
 
-	Label           string `json:"label"`
-	Visible         bool   `json:"visible"`
-	Config          string `json:"config"`
-	ContentType     string `json:"contentType"`
-	ModuleTitleType string `json:"moduleTitleType"`
-	ResumeID        string `json:"resumeID"`
+	Label            string                              `json:"label"`
+	Visible          bool                                `json:"visible"`
+	Config           string                              `json:"config"`
+	ContentType      string                              `json:"contentType"`
+	ModuleTitleType  string                              `json:"moduleTitleType"`
+	ResumeID         string                              `json:"resumeID"`
+	EducationDetails []*education_detail.EducationDetail `json:"educationDetails"`
 
 	models.CommonTimestampsField
 }

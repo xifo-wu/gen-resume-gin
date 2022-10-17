@@ -3,6 +3,7 @@ package v1
 import (
 	"errors"
 	"gen-resume/app/models/education"
+	"gen-resume/app/models/education_detail"
 	"gen-resume/app/models/resume"
 	"gen-resume/app/models/resume_basic"
 	"gen-resume/app/policies"
@@ -14,12 +15,17 @@ import (
 	"gen-resume/pkg/response"
 
 	"github.com/gin-gonic/gin"
+	"github.com/gin-gonic/gin/binding"
 	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
 )
 
 type ResumesController struct {
 	BaseAPIController
+}
+
+type RemoveIdStruct struct {
+	RemoveIds []uint64 `json:"removeIds"`
 }
 
 func (ctrl *ResumesController) Index(c *gin.Context) {
@@ -48,6 +54,7 @@ func (ctrl *ResumesController) Index(c *gin.Context) {
 func (ctrl *ResumesController) Show(c *gin.Context) {
 	var resumeModel resume.Resume
 	database.DB.Model(&resume.Resume{}).
+		Preload("Education.EducationDetails").
 		Preload(clause.Associations).
 		Where("slug = ?", c.Param("slug")).
 		First(&resumeModel)
@@ -234,7 +241,13 @@ func (ctrl *ResumesController) UpdateEducation(c *gin.Context) {
 	}
 
 	request := education.Education{}
-	if err := c.ShouldBind(&request); err != nil {
+	if err := c.ShouldBindBodyWith(&request, binding.JSON); err != nil {
+		response.BadRequest(c, err, "请求解析错误，请确认请求格式是否正确。上传文件请使用 multipart 标头，参数请使用 JSON 格式。")
+		return
+	}
+
+	removeIdsRequest := RemoveIdStruct{}
+	if err := c.ShouldBindBodyWith(&removeIdsRequest, binding.JSON); err != nil {
 		response.BadRequest(c, err, "请求解析错误，请确认请求格式是否正确。上传文件请使用 multipart 标头，参数请使用 JSON 格式。")
 		return
 	}
@@ -249,6 +262,11 @@ func (ctrl *ResumesController) UpdateEducation(c *gin.Context) {
 
 	result := database.DB.Session(&gorm.Session{FullSaveAssociations: true}).
 		Updates(&resumeModel)
+
+	removeIdsLen := len(removeIdsRequest.RemoveIds)
+	if removeIdsLen != 0 {
+		database.DB.Delete(&education_detail.EducationDetail{}, removeIdsRequest.RemoveIds)
+	}
 
 	if result.RowsAffected > 0 {
 		response.Data(c, resumeModel)
