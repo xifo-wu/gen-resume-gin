@@ -14,7 +14,7 @@ type EducationDetail struct {
 	EndOn            string `json:"endOn"`
 	UniversityMajors string `json:"universityMajors"`
 	Desc             string `json:"desc"`
-	EducationID      string `json:"-"`
+	EducationID      string `json:"educationID"`
 	SortIndex        int    `json:"sortIndex"`
 
 	models.CommonTimestampsField
