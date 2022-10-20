@@ -4,6 +4,8 @@ import (
 	"errors"
 	"gen-resume/app/models/education"
 	"gen-resume/app/models/education_detail"
+	"gen-resume/app/models/project"
+	"gen-resume/app/models/project_detail"
 	"gen-resume/app/models/resume"
 	"gen-resume/app/models/resume_basic"
 	"gen-resume/app/models/work_experience"
@@ -57,6 +59,7 @@ func (ctrl *ResumesController) Show(c *gin.Context) {
 	var resumeModel resume.Resume
 	database.DB.Model(&resume.Resume{}).
 		Preload("Education.EducationDetails").
+		Preload("Project.ProjectDetails").
 		Preload("WorkExperience.WorkExperienceDetails").
 		Preload(clause.Associations).
 		Where("slug = ?", c.Param("slug")).
@@ -105,6 +108,9 @@ func (ctrl *ResumesController) Store(c *gin.Context) {
 func (ctrl *ResumesController) Update(c *gin.Context) {
 	var resumeModel resume.Resume
 	database.DB.Model(&resume.Resume{}).
+		Preload("Education.EducationDetails").
+		Preload("Project.ProjectDetails").
+		Preload("WorkExperience.WorkExperienceDetails").
 		Preload(clause.Associations).
 		Where("slug = ?", c.Param("slug")).
 		First(&resumeModel)
@@ -235,6 +241,46 @@ func (ctrl *ResumesController) AddWorkExperience(c *gin.Context) {
 	}
 }
 
+func (ctrl *ResumesController) AddProject(c *gin.Context) {
+	var resumeModel resume.Resume
+	database.DB.Model(&resume.Resume{}).
+		Preload(clause.Associations).
+		Where("slug = ?", c.Param("slug")).
+		First(&resumeModel)
+
+	if resumeModel.ID == 0 {
+		response.Abort404(c)
+		return
+	}
+
+	if ok := policies.CanModifyResume(c, resumeModel); !ok {
+		response.Abort403(c)
+		return
+	}
+
+	if resumeModel.Project != nil {
+		message := "项目经历已存在"
+		response.BadRequest(c, errors.New(message), message)
+		return
+	}
+
+	database.DB.Model(&resumeModel).Association("Project").Append(&project.Project{
+		Label:           "项目经历",
+		Visible:         true,
+		ContentType:     "project1",
+		ModuleTitleType: resumeModel.LayoutType,
+	})
+
+	resumeModel.ModuleOrder = resumeModel.ModuleOrder + ",project"
+
+	rowsAffected := resumeModel.Save()
+	if rowsAffected > 0 {
+		response.Data(c, resumeModel)
+	} else {
+		response.Abort500(c, "添加失败，请稍后尝试~")
+	}
+}
+
 func (ctrl *ResumesController) UpdateResumeBasic(c *gin.Context) {
 	var resumeModel resume.Resume
 	database.DB.Model(&resume.Resume{}).
@@ -356,6 +402,56 @@ func (ctrl *ResumesController) UpdateWorkExperience(c *gin.Context) {
 	removeIdsLen := len(removeIdsRequest.RemoveIds)
 	if removeIdsLen != 0 {
 		database.DB.Delete(&work_experience_detail.WorkExperienceDetail{}, removeIdsRequest.RemoveIds)
+	}
+
+	if result.RowsAffected > 0 {
+		response.Data(c, resumeModel)
+	} else {
+		response.Abort500(c, "更新失败，请稍后尝试~")
+	}
+}
+
+func (ctrl *ResumesController) UpdateProject(c *gin.Context) {
+	var resumeModel resume.Resume
+	database.DB.Model(&resume.Resume{}).
+		Preload("Education.EducationDetails").
+		Preload("Project.ProjectDetails").
+		Preload("WorkExperience.WorkExperienceDetails").
+		Preload(clause.Associations).
+		Where("slug = ?", c.Param("slug")).
+		First(&resumeModel)
+
+	if resumeModel.ID == 0 {
+		response.Abort404(c)
+		return
+	}
+
+	request := project.Project{}
+	if err := c.ShouldBindBodyWith(&request, binding.JSON); err != nil {
+		response.BadRequest(c, err, "请求解析错误，请确认请求格式是否正确。上传文件请使用 multipart 标头，参数请使用 JSON 格式。")
+		return
+	}
+
+	removeIdsRequest := RemoveIdStruct{}
+	if err := c.ShouldBindBodyWith(&removeIdsRequest, binding.JSON); err != nil {
+		response.BadRequest(c, err, "请求解析错误，请确认请求格式是否正确。上传文件请使用 multipart 标头，参数请使用 JSON 格式。")
+		return
+	}
+
+	if ok := policies.CanModifyResume(c, resumeModel); !ok {
+		response.Abort403(c)
+		return
+	}
+
+	request.ID = resumeModel.ResumeBasic.ID
+	resumeModel.Project = &request
+
+	result := database.DB.Session(&gorm.Session{FullSaveAssociations: true}).
+		Updates(&resumeModel)
+
+	removeIdsLen := len(removeIdsRequest.RemoveIds)
+	if removeIdsLen != 0 {
+		database.DB.Delete(&project_detail.ProjectDetail{}, removeIdsRequest.RemoveIds)
 	}
 
 	if result.RowsAffected > 0 {
