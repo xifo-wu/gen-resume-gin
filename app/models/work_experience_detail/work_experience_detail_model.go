@@ -11,7 +11,7 @@ type WorkExperienceDetail struct {
 
 	Name             string `json:"name"`
 	StartOn          string `json:"startOn"`
-	EndOn            string `json:"endOnf"`
+	EndOn            string `json:"endOn"`
 	Desc             string `json:"desc"`
 	JobTitle         string `json:"jobTitle"`
 	WorkExperienceID string `json:"workExperienceID"`
