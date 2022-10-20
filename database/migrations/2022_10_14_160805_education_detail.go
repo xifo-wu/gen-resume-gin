@@ -17,7 +17,7 @@ func init() {
 		StartOn          string
 		EndOn            string
 		UniversityMajors string
-		Desc             string
+		Desc             string `gorm:"type:text"`
 		EducationID      string
 
 		models.CommonTimestampsField

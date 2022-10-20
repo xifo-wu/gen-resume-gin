@@ -78,10 +78,12 @@ func RegisterAPIRoutes(r *gin.Engine) {
 			resumeGroup.PUT("/:slug/add-education", resumeController.AddEducation)
 			resumeGroup.PUT("/:slug/add-work-experience", resumeController.AddWorkExperience)
 			resumeGroup.PUT("/:slug/add-project", resumeController.AddProject)
+			resumeGroup.PUT("/:slug/add-other", resumeController.AddOther)
 			resumeGroup.PUT("/:slug/update-resume-basic", resumeController.UpdateResumeBasic)
 			resumeGroup.PUT("/:slug/update-education", resumeController.UpdateEducation)
 			resumeGroup.PUT("/:slug/update-work-experience", resumeController.UpdateWorkExperience)
 			resumeGroup.PUT("/:slug/update-project", resumeController.UpdateProject)
+			resumeGroup.PUT("/:slug/update-others", resumeController.UpdateOthers)
 
 			resumeGroup.DELETE("/:slug", resumeController.Delete)
 		}

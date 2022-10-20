@@ -16,7 +16,7 @@ func init() {
 		StartOn   string
 		EndOn     string
 		Role      string
-		Desc      string
+		Desc      string `gorm:"type:text"`
 		ProjectID string
 		SortIndex int `gorm:"default:0"`
 		models.CommonTimestampsField

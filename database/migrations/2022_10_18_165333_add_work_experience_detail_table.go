@@ -17,7 +17,7 @@ func init() {
 		StartOn          string
 		EndOn            string
 		JobTitle         string
-		Desc             string
+		Desc             string `gorm:"type:text"`
 		WorkExperienceID string
 		SortIndex        int `gorm:"default:0"`
 

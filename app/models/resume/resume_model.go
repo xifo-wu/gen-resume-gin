@@ -4,6 +4,7 @@ package resume
 import (
 	"gen-resume/app/models"
 	"gen-resume/app/models/education"
+	"gen-resume/app/models/other"
 	"gen-resume/app/models/project"
 	"gen-resume/app/models/resume_basic"
 	"gen-resume/app/models/user"
@@ -24,6 +25,7 @@ type Resume struct {
 	Education      *education.Education            `json:"education,omitempty"`
 	Project        *project.Project                `json:"project,omitempty"`
 	WorkExperience *work_experience.WorkExperience `json:"workExperience,omitempty"`
+	Others         []other.Other                   `json:"others,omitempty"`
 
 	models.CommonTimestampsField
 }
