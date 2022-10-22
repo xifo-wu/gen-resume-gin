@@ -25,7 +25,7 @@ type Resume struct {
 	Education      *education.Education            `json:"education,omitempty"`
 	Project        *project.Project                `json:"project,omitempty"`
 	WorkExperience *work_experience.WorkExperience `json:"workExperience,omitempty"`
-	Others         []other.Other                   `json:"others,omitempty"`
+	Others         []*other.Other                  `json:"others,omitempty"`
 
 	models.CommonTimestampsField
 }

@@ -2,6 +2,7 @@ package v1
 
 import (
 	"errors"
+	"fmt"
 	"gen-resume/app/models/education"
 	"gen-resume/app/models/education_detail"
 	"gen-resume/app/models/other"
@@ -329,6 +330,61 @@ func (ctrl *ResumesController) AddOther(c *gin.Context) {
 	}
 }
 
+func (ctrl *ResumesController) UpdateResumeLayoutType(c *gin.Context) {
+	var resumeModel resume.Resume
+	database.DB.Model(&resume.Resume{}).
+		Preload(clause.Associations).
+		Where("slug = ?", c.Param("slug")).
+		First(&resumeModel)
+
+	if resumeModel.ID == 0 {
+		response.Abort404(c)
+		return
+	}
+
+	request := resume.Resume{}
+	if err := c.ShouldBind(&request); err != nil {
+		response.BadRequest(c, err, "请求解析错误，请确认请求格式是否正确。上传文件请使用 multipart 标头，参数请使用 JSON 格式。")
+		return
+	}
+
+	if ok := policies.CanModifyResume(c, resumeModel); !ok {
+		response.Abort403(c)
+		return
+	}
+
+	resumeModel.LayoutType = request.LayoutType
+
+	if resumeModel.Education != nil {
+		resumeModel.Education.ModuleTitleType = request.LayoutType
+	}
+
+	if resumeModel.Project != nil {
+		resumeModel.Project.ModuleTitleType = request.LayoutType
+	}
+
+	if resumeModel.WorkExperience != nil {
+		resumeModel.WorkExperience.ModuleTitleType = request.LayoutType
+	}
+
+	if len(resumeModel.Others) != 0 {
+		for _, v := range resumeModel.Others {
+			v.ModuleTitleType = request.LayoutType
+		}
+	}
+
+	fmt.Println(resumeModel.Others, "resumeModel.Others")
+
+	result := database.DB.Session(&gorm.Session{FullSaveAssociations: true}).
+		Updates(&resumeModel)
+
+	if result.RowsAffected > 0 {
+		response.Data(c, resumeModel)
+	} else {
+		response.Abort500(c, "更新失败，请稍后尝试~")
+	}
+}
+
 func (ctrl *ResumesController) UpdateResumeBasic(c *gin.Context) {
 	var resumeModel resume.Resume
 	database.DB.Model(&resume.Resume{}).
@@ -525,8 +581,8 @@ func (ctrl *ResumesController) UpdateOthers(c *gin.Context) {
 	}
 
 	type Request struct {
-		Others    []other.Other `json:"others"`
-		RemoveIds []interface{} `json:"removeIds"`
+		Others    []*other.Other `json:"others"`
+		RemoveIds []interface{}  `json:"removeIds"`
 	}
 
 	request := Request{}

@@ -79,6 +79,7 @@ func RegisterAPIRoutes(r *gin.Engine) {
 			resumeGroup.PUT("/:slug/add-work-experience", resumeController.AddWorkExperience)
 			resumeGroup.PUT("/:slug/add-project", resumeController.AddProject)
 			resumeGroup.PUT("/:slug/add-other", resumeController.AddOther)
+			resumeGroup.PUT("/:slug/update-resume-layout-type", resumeController.UpdateResumeLayoutType)
 			resumeGroup.PUT("/:slug/update-resume-basic", resumeController.UpdateResumeBasic)
 			resumeGroup.PUT("/:slug/update-education", resumeController.UpdateEducation)
 			resumeGroup.PUT("/:slug/update-work-experience", resumeController.UpdateWorkExperience)
