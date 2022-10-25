@@ -69,7 +69,8 @@ func (vc *VerifyCode) SendEmail(email string) error {
 		return nil
 	}
 
-	content := fmt.Sprintf("<h1>您的 Email 验证码是 %v </h1>", code)
+	// TODO 可以自定义
+	content := fmt.Sprintf("<h1>【gen-resume】您的 Email 验证码是 %v </h1>", code)
 	// 发送邮件
 	mail.NewMailer().Send(mail.Email{
 		From: mail.From{
