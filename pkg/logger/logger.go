@@ -84,7 +84,7 @@ func customTimeEncoder(t time.Time, enc zapcore.PrimitiveArrayEncoder) {
 func getLogWriter(filename string, maxSize, maxBackup, maxAge int, compress bool, logType string) zapcore.WriteSyncer {
 
 	// 如果配置了按照日期记录日志文件
-	if logType == "daily" {
+	if app.IsProduction() && logType == "daily" {
 		logName := time.Now().Format("2006-01-02.log")
 		filename = strings.ReplaceAll(filename, "logs.log", logName)
 	}
