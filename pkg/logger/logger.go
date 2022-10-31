@@ -2,9 +2,9 @@
 package logger
 
 import (
+	"backend/pkg/app"
 	"encoding/json"
 	"fmt"
-	"gen-resume/pkg/app"
 	"os"
 	"strings"
 	"time"

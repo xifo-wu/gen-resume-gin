@@ -2,9 +2,9 @@
 package middlewares
 
 import (
+	"backend/pkg/helpers"
+	"backend/pkg/logger"
 	"bytes"
-	"gen-resume/pkg/helpers"
-	"gen-resume/pkg/logger"
 	"io"
 	"time"
 

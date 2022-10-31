@@ -2,8 +2,8 @@
 package work_experience_detail
 
 import (
-	"gen-resume/app/models"
-	"gen-resume/pkg/database"
+	"backend/app/models"
+	"backend/pkg/database"
 )
 
 type WorkExperienceDetail struct {

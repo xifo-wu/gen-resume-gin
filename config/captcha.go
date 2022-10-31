@@ -1,6 +1,6 @@
 package config
 
-import "gen-resume/pkg/config"
+import "backend/pkg/config"
 
 func init() {
 	config.Add("captcha", func() map[string]interface{} {

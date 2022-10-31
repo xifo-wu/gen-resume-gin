@@ -2,8 +2,8 @@
 package validators
 
 import (
-	"gen-resume/pkg/captcha"
-	"gen-resume/pkg/verifycode"
+	"backend/pkg/captcha"
+	"backend/pkg/verifycode"
 )
 
 // ValidateCaptcha 自定义规则，验证『图片验证码』

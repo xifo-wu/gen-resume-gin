@@ -3,8 +3,8 @@ package {{PackageName}}
 
 import (
 
-    "gen-resume/pkg/logger"
-    "gen-resume/pkg/database"
+    "backend/pkg/logger"
+    "backend/pkg/database"
 )
 
 type {{StructName}} struct {

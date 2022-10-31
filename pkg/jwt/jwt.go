@@ -2,10 +2,10 @@
 package jwt
 
 import (
+	"backend/pkg/app"
+	"backend/pkg/config"
+	"backend/pkg/logger"
 	"errors"
-	"gen-resume/pkg/app"
-	"gen-resume/pkg/config"
-	"gen-resume/pkg/logger"
 	"strings"
 	"time"
 

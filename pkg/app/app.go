@@ -2,7 +2,7 @@
 package app
 
 import (
-	"gen-resume/pkg/config"
+	"backend/pkg/config"
 	"time"
 )
 

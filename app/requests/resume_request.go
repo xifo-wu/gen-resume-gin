@@ -1,8 +1,8 @@
 package requests
 
 import (
+	"backend/pkg/auth"
 	"fmt"
-	"gen-resume/pkg/auth"
 
 	"github.com/gin-gonic/gin"
 	"github.com/thedevsaddam/govalidator"

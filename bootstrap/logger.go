@@ -1,8 +1,8 @@
 package bootstrap
 
 import (
-	"gen-resume/pkg/config"
-	"gen-resume/pkg/logger"
+	"backend/pkg/config"
+	"backend/pkg/logger"
 )
 
 // SetupLogger 初始化 Logger

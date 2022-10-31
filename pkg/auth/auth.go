@@ -1,9 +1,9 @@
 package auth
 
 import (
+	"backend/app/models/user"
+	"backend/pkg/logger"
 	"errors"
-	"gen-resume/app/models/user"
-	"gen-resume/pkg/logger"
 
 	"github.com/gin-gonic/gin"
 )

@@ -1,9 +1,9 @@
 package cmd
 
 import (
+	"backend/pkg/cache"
+	"backend/pkg/console"
 	"fmt"
-	"gen-resume/pkg/cache"
-	"gen-resume/pkg/console"
 
 	"github.com/spf13/cobra"
 )

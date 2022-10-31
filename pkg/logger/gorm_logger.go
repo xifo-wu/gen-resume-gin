@@ -1,9 +1,9 @@
 package logger
 
 import (
+	"backend/pkg/helpers"
 	"context"
 	"errors"
-	"gen-resume/pkg/helpers"
 	"path/filepath"
 	"runtime"
 	"strings"

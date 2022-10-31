@@ -1,7 +1,7 @@
 // Package seeders 存放数据填充文件
 package seeders
 
-import "gen-resume/pkg/seed"
+import "backend/pkg/seed"
 
 func Initialize() {
 

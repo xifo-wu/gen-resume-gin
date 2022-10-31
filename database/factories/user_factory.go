@@ -2,8 +2,8 @@
 package factories
 
 import (
-	"gen-resume/app/models/user"
-	"gen-resume/pkg/helpers"
+	"backend/app/models/user"
+	"backend/pkg/helpers"
 
 	"github.com/bxcodec/faker/v3"
 )

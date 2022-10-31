@@ -2,9 +2,9 @@
 package work_experience
 
 import (
-	"gen-resume/app/models"
-	"gen-resume/app/models/work_experience_detail"
-	"gen-resume/pkg/database"
+	"backend/app/models"
+	"backend/app/models/work_experience_detail"
+	"backend/pkg/database"
 )
 
 type WorkExperience struct {

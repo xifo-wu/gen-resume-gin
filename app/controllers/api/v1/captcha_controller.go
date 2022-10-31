@@ -1,9 +1,9 @@
 package v1
 
 import (
-	"gen-resume/pkg/captcha"
-	"gen-resume/pkg/logger"
-	"gen-resume/pkg/response"
+	"backend/pkg/captcha"
+	"backend/pkg/logger"
+	"backend/pkg/response"
 
 	"github.com/gin-gonic/gin"
 )

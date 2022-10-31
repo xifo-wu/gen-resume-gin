@@ -2,10 +2,10 @@ package seeders
 
 import (
     "fmt"
-    "gen-resume/database/factories"
-    "gen-resume/pkg/console"
-    "gen-resume/pkg/logger"
-    "gen-resume/pkg/seed"
+    "backend/database/factories"
+    "backend/pkg/console"
+    "backend/pkg/logger"
+    "backend/pkg/seed"
 
     "gorm.io/gorm"
 )

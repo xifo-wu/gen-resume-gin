@@ -1,6 +1,6 @@
 package config
 
-import "gen-resume/pkg/config"
+import "backend/pkg/config"
 
 func init() {
 	config.Add("paging", func() map[string]interface{} {

@@ -2,14 +2,14 @@
 package resume
 
 import (
-	"gen-resume/app/models"
-	"gen-resume/app/models/education"
-	"gen-resume/app/models/other"
-	"gen-resume/app/models/project"
-	"gen-resume/app/models/resume_basic"
-	"gen-resume/app/models/user"
-	"gen-resume/app/models/work_experience"
-	"gen-resume/pkg/database"
+	"backend/app/models"
+	"backend/app/models/education"
+	"backend/app/models/other"
+	"backend/app/models/project"
+	"backend/app/models/resume_basic"
+	"backend/app/models/user"
+	"backend/app/models/work_experience"
+	"backend/pkg/database"
 )
 
 type Resume struct {

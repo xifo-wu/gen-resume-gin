@@ -2,8 +2,8 @@
 package other
 
 import (
-	"gen-resume/app/models"
-	"gen-resume/pkg/database"
+	"backend/app/models"
+	"backend/pkg/database"
 )
 
 type Other struct {

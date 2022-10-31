@@ -1,8 +1,8 @@
 package cmd
 
 import (
-	"gen-resume/pkg/console"
-	"gen-resume/pkg/helpers"
+	"backend/pkg/console"
+	"backend/pkg/helpers"
 
 	"github.com/spf13/cobra"
 )

@@ -2,11 +2,11 @@
 package make
 
 import (
+	"backend/pkg/console"
+	"backend/pkg/file"
+	"backend/pkg/str"
 	"embed"
 	"fmt"
-	"gen-resume/pkg/console"
-	"gen-resume/pkg/file"
-	"gen-resume/pkg/str"
 	"strings"
 
 	"github.com/iancoleman/strcase"

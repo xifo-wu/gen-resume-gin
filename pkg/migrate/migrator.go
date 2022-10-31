@@ -2,9 +2,9 @@
 package migrate
 
 import (
-	"gen-resume/pkg/console"
-	"gen-resume/pkg/database"
-	"gen-resume/pkg/file"
+	"backend/pkg/console"
+	"backend/pkg/database"
+	"backend/pkg/file"
 	"os"
 
 	"gorm.io/gorm"

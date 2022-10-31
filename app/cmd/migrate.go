@@ -1,8 +1,8 @@
 package cmd
 
 import (
-	"gen-resume/database/migrations"
-	"gen-resume/pkg/migrate"
+	"backend/database/migrations"
+	"backend/pkg/migrate"
 
 	"github.com/spf13/cobra"
 )

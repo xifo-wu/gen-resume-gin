@@ -2,9 +2,9 @@
 package project
 
 import (
-	"gen-resume/app/models"
-	"gen-resume/app/models/project_detail"
-	"gen-resume/pkg/database"
+	"backend/app/models"
+	"backend/app/models/project_detail"
+	"backend/pkg/database"
 )
 
 type Project struct {

@@ -2,8 +2,8 @@
 package cache
 
 import (
+	"backend/pkg/logger"
 	"encoding/json"
-	"gen-resume/pkg/logger"
 	"sync"
 	"time"
 

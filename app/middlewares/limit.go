@@ -1,10 +1,10 @@
 package middlewares
 
 import (
-	"gen-resume/pkg/app"
-	"gen-resume/pkg/limiter"
-	"gen-resume/pkg/logger"
-	"gen-resume/pkg/response"
+	"backend/pkg/app"
+	"backend/pkg/limiter"
+	"backend/pkg/logger"
+	"backend/pkg/response"
 	"net/http"
 
 	"github.com/gin-gonic/gin"

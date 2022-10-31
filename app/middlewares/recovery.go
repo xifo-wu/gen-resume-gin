@@ -1,8 +1,8 @@
 package middlewares
 
 import (
-	"gen-resume/pkg/logger"
-	"gen-resume/pkg/response"
+	"backend/pkg/logger"
+	"backend/pkg/response"
 	"net"
 	"net/http/httputil"
 	"os"

@@ -1,7 +1,7 @@
 package config
 
 import (
-	"gen-resume/pkg/config"
+	"backend/pkg/config"
 )
 
 func init() {
@@ -17,7 +17,7 @@ func init() {
 				// 数据库连接信息
 				"host":     config.Env("DB_HOST", "127.0.0.1"),
 				"port":     config.Env("DB_PORT", "3306"),
-				"database": config.Env("DB_DATABASE", "gen-resume"),
+				"database": config.Env("DB_DATABASE", "backend"),
 				"username": config.Env("DB_USERNAME", ""),
 				"password": config.Env("DB_PASSWORD", ""),
 				"charset":  "utf8mb4",

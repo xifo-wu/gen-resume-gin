@@ -2,8 +2,8 @@
 package seed
 
 import (
-	"gen-resume/pkg/console"
-	"gen-resume/pkg/database"
+	"backend/pkg/console"
+	"backend/pkg/database"
 
 	"gorm.io/gorm"
 )

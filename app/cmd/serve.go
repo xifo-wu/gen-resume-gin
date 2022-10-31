@@ -1,10 +1,10 @@
 package cmd
 
 import (
-	"gen-resume/bootstrap"
-	"gen-resume/pkg/config"
-	"gen-resume/pkg/console"
-	"gen-resume/pkg/logger"
+	"backend/bootstrap"
+	"backend/pkg/config"
+	"backend/pkg/console"
+	"backend/pkg/logger"
 
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/cobra"

@@ -1,8 +1,8 @@
 package policies
 
 import (
-    "gen-resume/app/models/{{PackageName}}"
-    "gen-resume/pkg/auth"
+    "backend/app/models/{{PackageName}}"
+    "backend/pkg/auth"
 
     "github.com/gin-gonic/gin"
 )

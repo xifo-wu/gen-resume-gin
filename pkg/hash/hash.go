@@ -2,7 +2,7 @@
 package hash
 
 import (
-	"gen-resume/pkg/logger"
+	"backend/pkg/logger"
 
 	"golang.org/x/crypto/bcrypt"
 )

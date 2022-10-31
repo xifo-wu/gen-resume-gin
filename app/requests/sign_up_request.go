@@ -1,7 +1,7 @@
 package requests
 
 import (
-	"gen-resume/app/requests/validators"
+	"backend/app/requests/validators"
 	"strings"
 
 	"github.com/gin-gonic/gin"

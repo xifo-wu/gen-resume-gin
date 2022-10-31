@@ -2,10 +2,10 @@
 package database
 
 import (
+	"backend/pkg/config"
 	"database/sql"
 	"errors"
 	"fmt"
-	"gen-resume/pkg/config"
 
 	"gorm.io/gorm"
 	gormLogger "gorm.io/gorm/logger"

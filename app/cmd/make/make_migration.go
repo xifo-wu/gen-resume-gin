@@ -1,9 +1,9 @@
 package make
 
 import (
+	"backend/pkg/app"
+	"backend/pkg/console"
 	"fmt"
-	"gen-resume/pkg/app"
-	"gen-resume/pkg/console"
 
 	"github.com/spf13/cobra"
 )

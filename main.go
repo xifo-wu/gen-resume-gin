@@ -1,13 +1,13 @@
 package main
 
 import (
+	"backend/app/cmd"
+	"backend/app/cmd/make"
+	"backend/bootstrap"
+	bootstrapConfig "backend/config"
+	"backend/pkg/config"
+	"backend/pkg/console"
 	"fmt"
-	"gen-resume/app/cmd"
-	"gen-resume/app/cmd/make"
-	"gen-resume/bootstrap"
-	bootstrapConfig "gen-resume/config"
-	"gen-resume/pkg/config"
-	"gen-resume/pkg/console"
 	"os"
 
 	"github.com/spf13/cobra"
@@ -22,7 +22,7 @@ func main() {
 
 	// 应用的主入口，默认调用 cmd.CmdServe 命令
 	var rootCmd = &cobra.Command{
-		Use:   "gen-resume",
+		Use:   "backend",
 		Short: "A simple forum project",
 		Long:  `Default will run "serve" command, you can use "-h" flag to see all subcommands`,
 

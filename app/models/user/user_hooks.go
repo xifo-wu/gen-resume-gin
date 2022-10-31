@@ -1,9 +1,9 @@
 package user
 
 import (
+	"backend/pkg/hash"
 	"crypto/md5"
 	"fmt"
-	"gen-resume/pkg/hash"
 
 	"gorm.io/gorm"
 )

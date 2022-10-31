@@ -2,11 +2,11 @@
 package routes
 
 import (
-	apiV1 "gen-resume/app/controllers/api/v1"
-	"gen-resume/app/controllers/api/v1/auth"
-	"gen-resume/app/controllers/api/v1/manager"
-	"gen-resume/app/middlewares"
-	"gen-resume/pkg/config"
+	apiV1 "backend/app/controllers/api/v1"
+	"backend/app/controllers/api/v1/auth"
+	"backend/app/controllers/api/v1/manager"
+	"backend/app/middlewares"
+	"backend/pkg/config"
 
 	"github.com/gin-gonic/gin"
 )

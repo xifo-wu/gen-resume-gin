@@ -2,7 +2,7 @@
 package requests
 
 import (
-	"gen-resume/app/requests/validators"
+	"backend/app/requests/validators"
 
 	"github.com/gin-gonic/gin"
 	"github.com/thedevsaddam/govalidator"

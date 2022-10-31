@@ -2,9 +2,9 @@
 package limiter
 
 import (
-	"gen-resume/pkg/config"
-	"gen-resume/pkg/logger"
-	"gen-resume/pkg/redis"
+	"backend/pkg/config"
+	"backend/pkg/logger"
+	"backend/pkg/redis"
 	"strings"
 
 	"github.com/gin-gonic/gin"

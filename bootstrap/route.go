@@ -1,8 +1,8 @@
 package bootstrap
 
 import (
-	"gen-resume/app/middlewares"
-	"gen-resume/routes"
+	"backend/app/middlewares"
+	"backend/routes"
 	"net/http"
 	"strings"
 

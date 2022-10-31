@@ -1,10 +1,10 @@
 package v1
 
 import (
-	"gen-resume/app/models/user"
-	"gen-resume/app/requests"
-	"gen-resume/pkg/auth"
-	"gen-resume/pkg/response"
+	"backend/app/models/user"
+	"backend/app/requests"
+	"backend/pkg/auth"
+	"backend/pkg/response"
 
 	"github.com/gin-gonic/gin"
 )

@@ -2,8 +2,8 @@
 package redis
 
 import (
+	"backend/pkg/logger"
 	"context"
-	"gen-resume/pkg/logger"
 	"sync"
 	"time"
 

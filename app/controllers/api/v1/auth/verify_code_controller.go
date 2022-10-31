@@ -1,10 +1,10 @@
 package auth
 
 import (
-	v1 "gen-resume/app/controllers/api/v1"
-	"gen-resume/app/requests"
-	"gen-resume/pkg/response"
-	"gen-resume/pkg/verifycode"
+	v1 "backend/app/controllers/api/v1"
+	"backend/app/requests"
+	"backend/pkg/response"
+	"backend/pkg/verifycode"
 
 	"github.com/gin-gonic/gin"
 )

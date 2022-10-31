@@ -2,7 +2,7 @@
 package requests
 
 import (
-	"gen-resume/pkg/response"
+	"backend/pkg/response"
 
 	"github.com/gin-gonic/gin"
 	"github.com/thedevsaddam/govalidator"

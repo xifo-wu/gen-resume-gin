@@ -1,10 +1,10 @@
 package v1
 
 import (
-    "gen-resume/app/models/{{PackageName}}"
-    "gen-resume/app/policies"
-    "gen-resume/app/requests"
-    "gen-resume/pkg/response"
+    "backend/app/models/{{PackageName}}"
+    "backend/app/policies"
+    "backend/app/requests"
+    "backend/pkg/response"
 
     "github.com/gin-gonic/gin"
 )

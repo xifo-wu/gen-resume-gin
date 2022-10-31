@@ -1,9 +1,9 @@
 package user
 
 import (
-	"gen-resume/pkg/app"
-	"gen-resume/pkg/database"
-	"gen-resume/pkg/paginator"
+	"backend/pkg/app"
+	"backend/pkg/database"
+	"backend/pkg/paginator"
 
 	"github.com/gin-gonic/gin"
 )

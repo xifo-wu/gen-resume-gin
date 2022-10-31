@@ -1,11 +1,11 @@
 package auth
 
 import (
-	v1 "gen-resume/app/controllers/api/v1"
-	"gen-resume/app/requests"
-	"gen-resume/pkg/auth"
-	"gen-resume/pkg/jwt"
-	"gen-resume/pkg/response"
+	v1 "backend/app/controllers/api/v1"
+	"backend/app/requests"
+	"backend/pkg/auth"
+	"backend/pkg/jwt"
+	"backend/pkg/response"
 
 	"github.com/gin-gonic/gin"
 )

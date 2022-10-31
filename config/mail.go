@@ -1,7 +1,7 @@
 // Package config 站点配置信息
 package config
 
-import "gen-resume/pkg/config"
+import "backend/pkg/config"
 
 func init() {
 	config.Add("mail", func() map[string]interface{} {

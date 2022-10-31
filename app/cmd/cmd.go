@@ -2,7 +2,7 @@
 package cmd
 
 import (
-	"gen-resume/pkg/helpers"
+	"backend/pkg/helpers"
 	"os"
 
 	"github.com/spf13/cobra"

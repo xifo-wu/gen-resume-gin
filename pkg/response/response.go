@@ -2,7 +2,7 @@
 package response
 
 import (
-	"gen-resume/pkg/logger"
+	"backend/pkg/logger"
 	"net/http"
 
 	"github.com/gin-gonic/gin"

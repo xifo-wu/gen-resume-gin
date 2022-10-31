@@ -1,8 +1,8 @@
 package migrations
 
 import (
+	"backend/pkg/migrate"
 	"database/sql"
-	"gen-resume/pkg/migrate"
 
 	"gorm.io/gorm"
 )

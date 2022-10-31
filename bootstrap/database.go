@@ -1,11 +1,11 @@
 package bootstrap
 
 import (
+	"backend/pkg/config"
+	"backend/pkg/database"
+	"backend/pkg/logger"
 	"errors"
 	"fmt"
-	"gen-resume/pkg/config"
-	"gen-resume/pkg/database"
-	"gen-resume/pkg/logger"
 	"time"
 
 	"gorm.io/driver/mysql"

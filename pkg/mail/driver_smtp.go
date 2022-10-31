@@ -1,9 +1,9 @@
 package mail
 
 import (
+	"backend/pkg/logger"
 	"crypto/tls"
 	"fmt"
-	"gen-resume/pkg/logger"
 	"net/smtp"
 
 	emailPKG "github.com/jordan-wright/email"

@@ -2,14 +2,14 @@
 package verifycode
 
 import (
+	"backend/pkg/app"
+	"backend/pkg/config"
+	"backend/pkg/helpers"
+	"backend/pkg/logger"
+	"backend/pkg/mail"
+	"backend/pkg/redis"
+	"backend/pkg/sms"
 	"fmt"
-	"gen-resume/pkg/app"
-	"gen-resume/pkg/config"
-	"gen-resume/pkg/helpers"
-	"gen-resume/pkg/logger"
-	"gen-resume/pkg/mail"
-	"gen-resume/pkg/redis"
-	"gen-resume/pkg/sms"
 	"strings"
 	"sync"
 )
@@ -70,7 +70,7 @@ func (vc *VerifyCode) SendEmail(email string) error {
 	}
 
 	// TODO 可以自定义
-	content := fmt.Sprintf("<h1>【gen-resume】您的 Email 验证码是 %v </h1>", code)
+	content := fmt.Sprintf("<h1>【backend】您的 Email 验证码是 %v </h1>", code)
 	// 发送邮件
 	mail.NewMailer().Send(mail.Email{
 		From: mail.From{

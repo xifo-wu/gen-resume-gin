@@ -2,9 +2,9 @@
 package validators
 
 import (
+	"backend/pkg/database"
 	"errors"
 	"fmt"
-	"gen-resume/pkg/database"
 	"strconv"
 	"strings"
 	"unicode/utf8"

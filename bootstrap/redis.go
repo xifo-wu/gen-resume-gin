@@ -1,9 +1,9 @@
 package bootstrap
 
 import (
+	"backend/pkg/config"
+	"backend/pkg/redis"
 	"fmt"
-	"gen-resume/pkg/config"
-	"gen-resume/pkg/redis"
 )
 
 // SetupRedis 初始化 Redis

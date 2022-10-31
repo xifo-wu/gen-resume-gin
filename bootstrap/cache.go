@@ -2,9 +2,9 @@
 package bootstrap
 
 import (
+	"backend/pkg/cache"
+	"backend/pkg/config"
 	"fmt"
-	"gen-resume/pkg/cache"
-	"gen-resume/pkg/config"
 )
 
 // SetupCache 缓存

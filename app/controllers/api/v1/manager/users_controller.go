@@ -1,10 +1,10 @@
 package manager
 
 import (
-	v1 "gen-resume/app/controllers/api/v1"
-	"gen-resume/app/models/user"
-	"gen-resume/app/requests"
-	"gen-resume/pkg/response"
+	v1 "backend/app/controllers/api/v1"
+	"backend/app/models/user"
+	"backend/app/requests"
+	"backend/pkg/response"
 
 	"github.com/gin-gonic/gin"
 )

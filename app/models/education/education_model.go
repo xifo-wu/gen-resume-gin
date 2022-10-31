@@ -2,9 +2,9 @@
 package education
 
 import (
-	"gen-resume/app/models"
-	"gen-resume/app/models/education_detail"
-	"gen-resume/pkg/database"
+	"backend/app/models"
+	"backend/app/models/education_detail"
+	"backend/pkg/database"
 )
 
 type Education struct {

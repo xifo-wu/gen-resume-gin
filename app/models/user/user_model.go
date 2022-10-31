@@ -2,9 +2,9 @@
 package user
 
 import (
-	"gen-resume/app/models"
-	"gen-resume/pkg/database"
-	"gen-resume/pkg/hash"
+	"backend/app/models"
+	"backend/pkg/database"
+	"backend/pkg/hash"
 )
 
 // User 用户模型

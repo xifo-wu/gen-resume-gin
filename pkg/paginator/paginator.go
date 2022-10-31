@@ -2,9 +2,9 @@
 package paginator
 
 import (
+	"backend/pkg/config"
+	"backend/pkg/logger"
 	"fmt"
-	"gen-resume/pkg/config"
-	"gen-resume/pkg/logger"
 	"math"
 	"strings"
 

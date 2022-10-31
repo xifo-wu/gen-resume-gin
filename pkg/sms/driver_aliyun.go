@@ -1,8 +1,8 @@
 package sms
 
 import (
+	"backend/pkg/logger"
 	"encoding/json"
-	"gen-resume/pkg/logger"
 
 	aliyunSmsClient "github.com/KenmyZhang/aliyun-communicate"
 )

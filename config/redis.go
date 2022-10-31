@@ -1,7 +1,7 @@
 package config
 
 import (
-	"gen-resume/pkg/config"
+	"backend/pkg/config"
 )
 
 func init() {

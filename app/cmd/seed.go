@@ -1,9 +1,9 @@
 package cmd
 
 import (
-	"gen-resume/database/seeders"
-	"gen-resume/pkg/console"
-	"gen-resume/pkg/seed"
+	"backend/database/seeders"
+	"backend/pkg/console"
+	"backend/pkg/seed"
 
 	"github.com/spf13/cobra"
 )

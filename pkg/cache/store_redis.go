@@ -1,8 +1,8 @@
 package cache
 
 import (
-	"gen-resume/pkg/config"
-	"gen-resume/pkg/redis"
+	"backend/pkg/config"
+	"backend/pkg/redis"
 	"time"
 )
 

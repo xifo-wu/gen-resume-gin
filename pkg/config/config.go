@@ -2,7 +2,7 @@
 package config
 
 import (
-	"gen-resume/pkg/helpers"
+	"backend/pkg/helpers"
 	"os"
 
 	"github.com/spf13/cast"

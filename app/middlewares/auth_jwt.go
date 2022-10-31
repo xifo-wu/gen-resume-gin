@@ -2,9 +2,9 @@
 package middlewares
 
 import (
-	"gen-resume/app/models/user"
-	"gen-resume/pkg/jwt"
-	"gen-resume/pkg/response"
+	"backend/app/models/user"
+	"backend/pkg/jwt"
+	"backend/pkg/response"
 
 	"github.com/gin-gonic/gin"
 )

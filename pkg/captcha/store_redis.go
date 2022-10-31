@@ -1,10 +1,10 @@
 package captcha
 
 import (
+	"backend/pkg/app"
+	"backend/pkg/config"
+	"backend/pkg/redis"
 	"errors"
-	"gen-resume/pkg/app"
-	"gen-resume/pkg/config"
-	"gen-resume/pkg/redis"
 	"time"
 )
 
