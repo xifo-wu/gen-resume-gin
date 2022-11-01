@@ -3,31 +3,34 @@ package resume_basic
 
 import (
 	"backend/app/models"
+	"backend/app/models/resume_basic_field_config"
 	"backend/pkg/database"
 )
+
+type ResumeBasicFieldConfig = resume_basic_field_config.ResumeBasicFieldConfig
 
 type ResumeBasic struct {
 	models.BaseModel
 
-	ResumeID                        uint64 `json:"resumeID"`
-	Age                             int    `json:"age"`                       // 年龄
-	Birthday                        string `json:"birthday"`                  // 生日
-	Avatar                          string `json:"avatar"`                    // 头像
-	Email                           string `json:"email"`                     // 邮箱
-	Job                             string `json:"job"`                       // 求职岗位
-	Mobile                          string `json:"mobile"`                    // 手机号
-	Name                            string `json:"name"`                      // 姓名
-	Website                         string `json:"website"`                   // 个人网站
-	EducationalQualifications       string `json:"educationalQualifications"` // 学历
-	AgeConfig                       string `json:"ageConfig" gorm:"type:text"`
-	BirthdayConfig                  string `json:"birthdayConfig" gorm:"type:text"`
-	AvatarConfig                    string `json:"avatarConfig" gorm:"type:text"`
-	EmailConfig                     string `json:"emailConfig" gorm:"type:text"`
-	JobConfig                       string `json:"jobConfig" gorm:"type:text"`
-	MobileConfig                    string `json:"mobileConfig" gorm:"type:text"`
-	NameConfig                      string `json:"nameConfig" gorm:"type:text"`
-	WebsiteConfig                   string `json:"websiteConfig" gorm:"type:text"`
-	EducationalQualificationsConfig string `json:"educationalQualificationsConfig" gorm:"type:text"`
+	ResumeID                        string                 `json:"-"`
+	Age                             int                    `json:"age"`                       // 年龄
+	Birthday                        string                 `json:"birthday"`                  // 生日
+	Avatar                          string                 `json:"avatar"`                    // 头像
+	Email                           string                 `json:"email"`                     // 邮箱
+	Job                             string                 `json:"job"`                       // 求职岗位
+	Mobile                          string                 `json:"mobile"`                    // 手机号
+	Name                            string                 `json:"name"`                      // 姓名
+	Website                         string                 `json:"website"`                   // 个人网站
+	EducationalQualifications       string                 `json:"educationalQualifications"` // 学历
+	AgeConfig                       ResumeBasicFieldConfig `json:"ageConfig"`
+	BirthdayConfig                  ResumeBasicFieldConfig `json:"birthdayConfig"`
+	AvatarConfig                    ResumeBasicFieldConfig `json:"avatarConfig"`
+	EmailConfig                     ResumeBasicFieldConfig `json:"emailConfig"`
+	JobConfig                       ResumeBasicFieldConfig `json:"jobConfig"`
+	MobileConfig                    ResumeBasicFieldConfig `json:"mobileConfig"`
+	NameConfig                      ResumeBasicFieldConfig `json:"nameConfig"`
+	WebsiteConfig                   ResumeBasicFieldConfig `json:"websiteConfig"`
+	EducationalQualificationsConfig ResumeBasicFieldConfig `json:"educationalQualificationsConfig"`
 
 	models.CommonTimestampsField
 }

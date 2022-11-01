@@ -8,6 +8,7 @@ import (
 	"backend/app/models/project_detail"
 	"backend/app/models/resume"
 	"backend/app/models/resume_basic"
+	"backend/app/models/resume_basic_field_config"
 	"backend/app/models/work_experience"
 	"backend/app/models/work_experience_detail"
 	"backend/app/policies"
@@ -91,11 +92,22 @@ func (ctrl *ResumesController) Store(c *gin.Context) {
 		ModuleOrder: "resumeBasic",
 		// 创建简历基础信息关联
 		ResumeBasic: &resume_basic.ResumeBasic{
-			Name:        currentUser.Nickname,
-			NameConfig:  "{\"visible\":true}",
-			Email:       currentUser.Email,
-			EmailConfig: "{\"visible\":true,\"icon\":\"mail\"}",
-			Mobile:      currentUser.Phone,
+			Name: currentUser.Nickname,
+			NameConfig: resume_basic_field_config.ResumeBasicFieldConfig{
+				Visible: true,
+			},
+			Email: currentUser.Email,
+			EmailConfig: resume_basic_field_config.ResumeBasicFieldConfig{
+				Visible: true,
+				Label:   "邮箱",
+				Icon:    "mail",
+			},
+			Mobile: currentUser.Phone,
+			MobileConfig: resume_basic_field_config.ResumeBasicFieldConfig{
+				Visible: true,
+				Label:   "电话",
+				Icon:    "call",
+			},
 		},
 	}
 
