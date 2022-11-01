@@ -109,6 +109,55 @@ func (ctrl *ResumesController) Store(c *gin.Context) {
 				Icon:    "call",
 			},
 		},
+		// 创建教育经历
+		Education: &education.Education{
+			Label:           "教育经历",
+			Visible:         true,
+			ContentType:     "education2",
+			ModuleTitleType: request.LayoutType,
+			EducationDetails: []*education_detail.EducationDetail{
+				{
+					Name:             "XXXX大学",
+					StartOn:          "2000-09",
+					EndOn:            "2004-06",
+					UniversityMajors: "XX专业",
+					SortIndex:        0,
+					Desc:             "这是一段关于大学的介绍。",
+				},
+			},
+		},
+		Project: &project.Project{
+			Label:           "项目经历",
+			Visible:         true,
+			ContentType:     "project2",
+			ModuleTitleType: request.LayoutType,
+			ProjectDetails: []*project_detail.ProjectDetail{
+				{
+					Name:      "XXXX项目",
+					StartOn:   "2000-09",
+					EndOn:     "2004-06",
+					Role:      "负责人",
+					SortIndex: 0,
+					Desc:      "这是一段关于项目的介绍。以及本人负责的具体内容",
+				},
+			},
+		},
+		WorkExperience: &work_experience.WorkExperience{
+			Label:           "工作经历",
+			Visible:         true,
+			ContentType:     "workExperience2",
+			ModuleTitleType: request.LayoutType,
+			WorkExperienceDetails: []*work_experience_detail.WorkExperienceDetail{
+				{
+					Name:      "XXXX公司",
+					StartOn:   "2000-09",
+					EndOn:     "2004-06",
+					JobTitle:  "XXX岗位",
+					SortIndex: 0,
+					Desc:      "这是一段关于自身在公司主要负责的工作内容",
+				},
+			},
+		},
 	}
 
 	resumeModel.Create()
