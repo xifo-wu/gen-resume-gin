@@ -89,7 +89,7 @@ func (ctrl *ResumesController) Store(c *gin.Context) {
 		Slug:        request.Slug,
 		LayoutType:  request.LayoutType,
 		UserID:      auth.CurrentUserID(c),
-		ModuleOrder: "resumeBasic",
+		ModuleOrder: "resumeBasic,education,project,workExperience",
 		// 创建简历基础信息关联
 		ResumeBasic: &resume_basic.ResumeBasic{
 			Name: currentUser.Nickname,
