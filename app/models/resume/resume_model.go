@@ -26,6 +26,8 @@ type Resume struct {
 	Project        *project.Project                `json:"project,omitempty"`
 	WorkExperience *work_experience.WorkExperience `json:"workExperience,omitempty"`
 	Others         []*other.Other                  `json:"others,omitempty"`
+	ThemeColor     string                          `json:"themeColor"`
+	CustomStyles   string                          `json:"customStyles"`
 
 	models.CommonTimestampsField
 }

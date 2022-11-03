@@ -117,6 +117,11 @@ func (ctrl *ResumesController) Store(c *gin.Context) {
 				Label:   "电话",
 				Icon:    "call",
 			},
+			Job: "设计师",
+			JobConfig: resume_basic_field_config.ResumeBasicFieldConfig{
+				Visible: true,
+				Label:   "求职岗位",
+			},
 		},
 		// 创建教育经历
 		Education: &education.Education{
