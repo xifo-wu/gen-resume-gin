@@ -59,23 +59,7 @@ func (ctrl *ResumesController) Index(c *gin.Context) {
 }
 
 func (ctrl *ResumesController) Show(c *gin.Context) {
-	var resumeModel resume.Resume
-	database.DB.Model(&resume.Resume{}).
-		Preload("ResumeBasic.AgeConfig").
-		Preload("ResumeBasic.BirthdayConfig").
-		Preload("ResumeBasic.AvatarConfig").
-		Preload("ResumeBasic.EmailConfig").
-		Preload("ResumeBasic.JobConfig").
-		Preload("ResumeBasic.MobileConfig").
-		Preload("ResumeBasic.NameConfig").
-		Preload("ResumeBasic.WebsiteConfig").
-		Preload("ResumeBasic.EducationalQualificationsConfig").
-		Preload("Education.EducationDetails").
-		Preload("Project.ProjectDetails").
-		Preload("WorkExperience.WorkExperienceDetails").
-		Preload(clause.Associations).
-		Where("slug = ?", c.Param("slug")).
-		First(&resumeModel)
+	resumeModel := resume.GetBy("slug", c.Param("slug"))
 
 	if resumeModel.ID == 0 {
 		response.Abort404(c)
@@ -406,11 +390,7 @@ func (ctrl *ResumesController) AddOther(c *gin.Context) {
 }
 
 func (ctrl *ResumesController) UpdateResumeLayoutType(c *gin.Context) {
-	var resumeModel resume.Resume
-	database.DB.Model(&resume.Resume{}).
-		Preload(clause.Associations).
-		Where("slug = ?", c.Param("slug")).
-		First(&resumeModel)
+	resumeModel := resume.GetBy("slug", c.Param("slug"))
 
 	if resumeModel.ID == 0 {
 		response.Abort404(c)
