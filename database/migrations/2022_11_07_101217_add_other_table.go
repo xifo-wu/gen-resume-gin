@@ -10,7 +10,7 @@ import (
 
 func init() {
 
-	type Project struct {
+	type Other struct {
 		models.BaseModel
 
 		Label           string
@@ -19,16 +19,19 @@ func init() {
 		ContentType     string
 		ModuleTitleType string
 		ResumeID        uint64 `gorm:"index"`
+		Desc            string `gorm:"type:text"`
+		SortIndex       int    `gorm:"default:0"`
+
 		models.CommonTimestampsField
 	}
 
 	up := func(migrator gorm.Migrator, DB *sql.DB) {
-		migrator.AutoMigrate(&Project{})
+		migrator.AutoMigrate(&Other{})
 	}
 
 	down := func(migrator gorm.Migrator, DB *sql.DB) {
-		migrator.DropTable(&Project{})
+		migrator.DropTable(&Other{})
 	}
 
-	migrate.Add("2022_10_19_160537_add_project_table", up, down)
+	migrate.Add("2022_11_07_101217_add_other_table", up, down)
 }

@@ -31,5 +31,5 @@ func init() {
 		migrator.DropTable(&Education{})
 	}
 
-	migrate.Add("2022_10_07_145652_education", up, down)
+	migrate.Add("2022_11_07_100617_add_education_table", up, down)
 }

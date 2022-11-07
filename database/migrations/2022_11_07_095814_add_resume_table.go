@@ -13,9 +13,13 @@ func init() {
 	type Resume struct {
 		models.BaseModel
 
-		Name       string `gorm:"type:varchar(255);not null;index"`
-		Slug       string `gorm:"type:varchar(255);not null;index"`
-		LayoutType string `gorm:"type:varchar(255)"`
+		Name         string `gorm:"type:varchar(255);not null;index"`
+		Slug         string `gorm:"type:varchar(255);not null;index"`
+		LayoutType   string `gorm:"type:varchar(255)"`
+		ThemeColor   string
+		CustomStyles string `gorm:"type:text"`
+		UserID       uint64 `gorm:"index"`
+		ModuleOrder  string
 
 		models.CommonTimestampsField
 	}
@@ -28,5 +32,5 @@ func init() {
 		migrator.DropTable(&Resume{})
 	}
 
-	migrate.Add("2022_09_27_155216_add_resumes_table", up, down)
+	migrate.Add("2022_11_07_095814_add_resume_table", up, down)
 }

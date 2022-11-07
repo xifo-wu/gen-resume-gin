@@ -32,5 +32,5 @@ func init() {
 		migrator.DropTable(&WorkExperienceDetail{})
 	}
 
-	migrate.Add("2022_10_18_165333_add_work_experience_detail_table", up, down)
+	migrate.Add("2022_11_07_101007_add_work_experience_detail_table", up, down)
 }

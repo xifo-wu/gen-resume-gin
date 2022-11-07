@@ -19,6 +19,7 @@ func init() {
 		UniversityMajors string
 		Desc             string `gorm:"type:text"`
 		EducationID      string
+		SortIndex        int `gorm:"default:0"`
 
 		models.CommonTimestampsField
 	}
@@ -31,5 +32,5 @@ func init() {
 		migrator.DropTable(&EducationDetail{})
 	}
 
-	migrate.Add("2022_10_14_160805_education_detail", up, down)
+	migrate.Add("2022_11_07_100654_add_education_detail_table", up, down)
 }

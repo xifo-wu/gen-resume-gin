@@ -10,10 +10,11 @@ import (
 
 func init() {
 
-	type ResumeBasicFieldConfig struct {
+	type ResumeBasicField struct {
 		models.BaseModel
 
 		ResumeBasicID uint64 `gorm:"index"`
+		Value         string
 		Visible       bool
 		Label         string
 		Icon          string
@@ -23,12 +24,12 @@ func init() {
 	}
 
 	up := func(migrator gorm.Migrator, DB *sql.DB) {
-		migrator.AutoMigrate(&ResumeBasicFieldConfig{})
+		migrator.AutoMigrate(&ResumeBasicField{})
 	}
 
 	down := func(migrator gorm.Migrator, DB *sql.DB) {
-		migrator.DropTable(&ResumeBasicFieldConfig{})
+		migrator.DropTable(&ResumeBasicField{})
 	}
 
-	migrate.Add("2022_10_31_164743_add_resume_basic_field_config_table", up, down)
+	migrate.Add("2022_11_07_100257_add_resume_basic_field_table", up, down)
 }

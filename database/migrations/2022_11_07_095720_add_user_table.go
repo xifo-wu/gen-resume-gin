@@ -16,6 +16,7 @@ func init() {
 		Username string `gorm:"type:varchar(255);not null;index"`
 		Nickname string `gorm:"type:varchar(255)"`
 		Avatar   string `gorm:"type:text"`
+		Gravatar string `gorm:"type:text"`
 		Email    string `gorm:"type:varchar(255)"`
 		Phone    string `json:"type:varchar(20)"`
 		Password string `gorm:"type:varchar(255)"`
@@ -31,5 +32,5 @@ func init() {
 		migrator.DropTable(&User{})
 	}
 
-	migrate.Add("2022_09_27_111205_add_users_table", up, down)
+	migrate.Add("2022_11_07_095720_add_user_table", up, down)
 }

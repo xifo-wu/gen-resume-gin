@@ -10,7 +10,7 @@ import (
 
 func init() {
 
-	type Other struct {
+	type WorkExperience struct {
 		models.BaseModel
 
 		Label           string
@@ -19,19 +19,17 @@ func init() {
 		ContentType     string
 		ModuleTitleType string
 		ResumeID        uint64 `gorm:"index"`
-		Desc            string `gorm:"type:text"`
-		SortIndex       int    `gorm:"default:0"`
 
 		models.CommonTimestampsField
 	}
 
 	up := func(migrator gorm.Migrator, DB *sql.DB) {
-		migrator.AutoMigrate(&Other{})
+		migrator.AutoMigrate(&WorkExperience{})
 	}
 
 	down := func(migrator gorm.Migrator, DB *sql.DB) {
-		migrator.DropTable(&Other{})
+		migrator.DropTable(&WorkExperience{})
 	}
 
-	migrate.Add("2022_10_20_100834_add_other_table", up, down)
+	migrate.Add("2022_11_07_100757_add_work_experience_table", up, down)
 }
