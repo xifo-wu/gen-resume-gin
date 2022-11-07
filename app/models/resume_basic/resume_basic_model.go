@@ -31,15 +31,15 @@ type ResumeBasic struct {
 	NameConfig                        ResumeBasicFieldConfig `gorm:"foreignKey:NameConfigID" json:"nameConfig"`
 	WebsiteConfig                     ResumeBasicFieldConfig `gorm:"foreignKey:WebsiteConfigID" json:"websiteConfig"`
 	EducationalQualificationsConfig   ResumeBasicFieldConfig `gorm:"foreignKey:EducationalQualificationsConfigID" json:"educationalQualificationsConfig"`
-	AgeConfigID                       uint64
-	BirthdayConfigID                  uint64
-	AvatarConfigID                    uint64
-	EmailConfigID                     uint64
-	JobConfigID                       uint64
-	MobileConfigID                    uint64
-	NameConfigID                      uint64
-	WebsiteConfigID                   uint64
-	EducationalQualificationsConfigID uint64
+	AgeConfigID                       uint64                 `json:"-"`
+	BirthdayConfigID                  uint64                 `json:"-"`
+	AvatarConfigID                    uint64                 `json:"-"`
+	EmailConfigID                     uint64                 `json:"-"`
+	JobConfigID                       uint64                 `json:"-"`
+	MobileConfigID                    uint64                 `json:"-"`
+	NameConfigID                      uint64                 `json:"-"`
+	WebsiteConfigID                   uint64                 `json:"-"`
+	EducationalQualificationsConfigID uint64                 `json:"-"`
 
 	models.CommonTimestampsField
 }
