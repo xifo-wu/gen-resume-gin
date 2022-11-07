@@ -3,43 +3,34 @@ package resume_basic
 
 import (
 	"backend/app/models"
-	"backend/app/models/resume_basic_field_config"
+	"backend/app/models/resume_basic_field"
 	"backend/pkg/database"
 )
 
-type ResumeBasicFieldConfig = resume_basic_field_config.ResumeBasicFieldConfig
+type ResumeBasicField = resume_basic_field.ResumeBasicField
 
 type ResumeBasic struct {
 	models.BaseModel
 
-	ResumeID                          string                 `json:"-"`
-	Age                               int                    `json:"age"`                       // 年龄
-	Birthday                          string                 `json:"birthday"`                  // 生日
-	Avatar                            string                 `json:"avatar"`                    // 头像
-	Email                             string                 `json:"email"`                     // 邮箱
-	Job                               string                 `json:"job"`                       // 求职岗位
-	Mobile                            string                 `json:"mobile"`                    // 手机号
-	Name                              string                 `json:"name"`                      // 姓名
-	Website                           string                 `json:"website"`                   // 个人网站
-	EducationalQualifications         string                 `json:"educationalQualifications"` // 学历
-	AgeConfig                         ResumeBasicFieldConfig `gorm:"foreignKey:AgeConfigID" json:"ageConfig"`
-	BirthdayConfig                    ResumeBasicFieldConfig `gorm:"foreignKey:BirthdayConfigID" json:"birthdayConfig"`
-	AvatarConfig                      ResumeBasicFieldConfig `gorm:"foreignKey:AvatarConfigID" json:"avatarConfig"`
-	EmailConfig                       ResumeBasicFieldConfig `gorm:"foreignKey:EmailConfigID" json:"emailConfig"`
-	JobConfig                         ResumeBasicFieldConfig `gorm:"foreignKey:JobConfigID" json:"jobConfig"`
-	MobileConfig                      ResumeBasicFieldConfig `gorm:"foreignKey:MobileConfigID" json:"mobileConfig"`
-	NameConfig                        ResumeBasicFieldConfig `gorm:"foreignKey:NameConfigID" json:"nameConfig"`
-	WebsiteConfig                     ResumeBasicFieldConfig `gorm:"foreignKey:WebsiteConfigID" json:"websiteConfig"`
-	EducationalQualificationsConfig   ResumeBasicFieldConfig `gorm:"foreignKey:EducationalQualificationsConfigID" json:"educationalQualificationsConfig"`
-	AgeConfigID                       uint64                 `json:"-"`
-	BirthdayConfigID                  uint64                 `json:"-"`
-	AvatarConfigID                    uint64                 `json:"-"`
-	EmailConfigID                     uint64                 `json:"-"`
-	JobConfigID                       uint64                 `json:"-"`
-	MobileConfigID                    uint64                 `json:"-"`
-	NameConfigID                      uint64                 `json:"-"`
-	WebsiteConfigID                   uint64                 `json:"-"`
-	EducationalQualificationsConfigID uint64                 `json:"-"`
+	ResumeID                    string           `json:"-"`
+	AgeID                       uint64           `json:"-"`
+	BirthdayID                  uint64           `json:"-"`
+	AvatarID                    uint64           `json:"-"`
+	EmailID                     uint64           `json:"-"`
+	JobID                       uint64           `json:"-"`
+	MobileID                    uint64           `json:"-"`
+	NameID                      uint64           `json:"-"`
+	WebsiteID                   uint64           `json:"-"`
+	EducationalQualificationsID uint64           `json:"-"`
+	Age                         ResumeBasicField `gorm:"foreignKey:AgeID" json:"age"`
+	Birthday                    ResumeBasicField `gorm:"foreignKey:BirthdayID" json:"birthday"`
+	Avatar                      ResumeBasicField `gorm:"foreignKey:AvatarID" json:"avatar"`
+	Email                       ResumeBasicField `gorm:"foreignKey:EmailID" json:"email"`
+	Job                         ResumeBasicField `gorm:"foreignKey:JobID" json:"job"`
+	Mobile                      ResumeBasicField `gorm:"foreignKey:MobileID" json:"mobile"`
+	Name                        ResumeBasicField `gorm:"foreignKey:NameID" json:"name"`
+	Website                     ResumeBasicField `gorm:"foreignKey:WebsiteID" json:"website"`
+	EducationalQualifications   ResumeBasicField `gorm:"foreignKey:EducationalQualificationsID" json:"educationalQualifications"`
 
 	models.CommonTimestampsField
 }

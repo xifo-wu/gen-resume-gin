@@ -18,14 +18,14 @@ func Get(id string) (resume Resume) {
 func GetBy(field, value string) (resume Resume) {
 	conditions := fmt.Sprintf("%s = ?", field)
 	database.DB.Where(conditions, value).
-		Preload("ResumeBasic.BirthdayConfig").
-		Preload("ResumeBasic.AvatarConfig").
-		Preload("ResumeBasic.EmailConfig").
-		Preload("ResumeBasic.JobConfig").
-		Preload("ResumeBasic.MobileConfig").
-		Preload("ResumeBasic.NameConfig").
-		Preload("ResumeBasic.WebsiteConfig").
-		Preload("ResumeBasic.EducationalQualificationsConfig").
+		Preload("ResumeBasic.Birthday").
+		Preload("ResumeBasic.Avatar").
+		Preload("ResumeBasic.Email").
+		Preload("ResumeBasic.Job").
+		Preload("ResumeBasic.Mobile").
+		Preload("ResumeBasic.Name").
+		Preload("ResumeBasic.Website").
+		Preload("ResumeBasic.EducationalQualifications").
 		Preload("Education.EducationDetails").
 		Preload("Project.ProjectDetails").
 		Preload("WorkExperience.WorkExperienceDetails").
