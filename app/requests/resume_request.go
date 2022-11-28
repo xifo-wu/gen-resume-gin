@@ -1,7 +1,6 @@
 package requests
 
 import (
-	"backend/pkg/auth"
 	"fmt"
 
 	"github.com/gin-gonic/gin"
@@ -19,8 +18,8 @@ func ResumeSave(data interface{}, c *gin.Context) map[string][]string {
 
 	fmt.Println("id", id)
 	rules := govalidator.MapData{
-		"name":       []string{"required"},
-		"slug":       []string{"required", "not_exists_in_user:resumes,slug," + auth.CurrentUserID(c) + "," + id},
+		"name": []string{"required"},
+		// "slug":       []string{"required", "not_exists_in_user:resumes,slug," + auth.CurrentUserID(c) + "," + id},
 		"layoutType": []string{"required"},
 	}
 

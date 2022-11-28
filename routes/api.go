@@ -14,8 +14,6 @@ import (
 // RegisterAPIRoutes 注册网页相关路由
 func RegisterAPIRoutes(r *gin.Engine) {
 
-	// 测试一个 v1 的路由组，我们所有的 v1 版本的路由都将存放到这里
-	// 测试一个 v1 的路由组，我们所有的 v1 版本的路由都将存放到这里
 	var v1 *gin.RouterGroup
 	if len(config.Get("app.api_domain")) == 0 {
 		v1 = r.Group("/api/v1")
@@ -73,20 +71,20 @@ func RegisterAPIRoutes(r *gin.Engine) {
 		{
 			resumeGroup.POST("", resumeController.Store)
 			resumeGroup.GET("", resumeController.Index)
-			resumeGroup.GET("/:slug", resumeController.Show)
-			resumeGroup.PUT("/:slug", resumeController.Update)
-			resumeGroup.PUT("/:slug/add-education", resumeController.AddEducation)
-			resumeGroup.PUT("/:slug/add-work-experience", resumeController.AddWorkExperience)
-			resumeGroup.PUT("/:slug/add-project", resumeController.AddProject)
-			resumeGroup.PUT("/:slug/add-other", resumeController.AddOther)
-			resumeGroup.PUT("/:slug/resume-layout-type", resumeController.UpdateResumeLayoutType)
-			resumeGroup.PUT("/:slug/update-resume-basic", resumeController.UpdateResumeBasic)
-			resumeGroup.PUT("/:slug/update-education", resumeController.UpdateEducation)
-			resumeGroup.PUT("/:slug/update-work-experience", resumeController.UpdateWorkExperience)
-			resumeGroup.PUT("/:slug/update-project", resumeController.UpdateProject)
-			resumeGroup.PUT("/:slug/update-others", resumeController.UpdateOthers)
+			resumeGroup.GET("/:id", resumeController.Show)
+			resumeGroup.PUT("/:id", resumeController.Update)
+			resumeGroup.PUT("/:id/add-education", resumeController.AddEducation)
+			resumeGroup.PUT("/:id/add-work-experience", resumeController.AddWorkExperience)
+			resumeGroup.PUT("/:id/add-project", resumeController.AddProject)
+			resumeGroup.PUT("/:id/add-other", resumeController.AddOther)
+			resumeGroup.PUT("/:id/resume-layout-type", resumeController.UpdateResumeLayoutType)
+			resumeGroup.PUT("/:id/resume-basic", resumeController.UpdateResumeBasic)
+			resumeGroup.PUT("/:id/update-education", resumeController.UpdateEducation)
+			resumeGroup.PUT("/:id/update-work-experience", resumeController.UpdateWorkExperience)
+			resumeGroup.PUT("/:id/update-project", resumeController.UpdateProject)
+			resumeGroup.PUT("/:id/update-others", resumeController.UpdateOthers)
 
-			resumeGroup.DELETE("/:slug", resumeController.Delete)
+			resumeGroup.DELETE("/:id", resumeController.Delete)
 		}
 
 		// Manager API

@@ -24,7 +24,6 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/gin-gonic/gin/binding"
 	"gorm.io/gorm"
-	"gorm.io/gorm/clause"
 )
 
 type ResumesController struct {
@@ -41,7 +40,10 @@ func (ctrl *ResumesController) Index(c *gin.Context) {
 		return
 	}
 
-	query := database.DB.Model(resume.Resume{}).Where("user_id = ?", auth.CurrentUserID(c))
+	// response.Abort403(c, "没权")
+	// return
+
+	query := database.DB.Model(resume.Resume{}).Order("updated_at desc").Where("user_id = ?", auth.CurrentUserID(c))
 	var resumes []resume.Resume
 
 	pager := paginator.Paginate(
@@ -59,7 +61,7 @@ func (ctrl *ResumesController) Index(c *gin.Context) {
 }
 
 func (ctrl *ResumesController) Show(c *gin.Context) {
-	resumeModel := resume.GetBy("slug", c.Param("slug"))
+	resumeModel := resume.Get(c.Param("id"))
 
 	if resumeModel.ID == 0 {
 		response.Abort404(c)
@@ -168,14 +170,7 @@ func (ctrl *ResumesController) Store(c *gin.Context) {
 }
 
 func (ctrl *ResumesController) Update(c *gin.Context) {
-	var resumeModel resume.Resume
-	database.DB.Model(&resume.Resume{}).
-		Preload("Education.EducationDetails").
-		Preload("Project.ProjectDetails").
-		Preload("WorkExperience.WorkExperienceDetails").
-		Preload(clause.Associations).
-		Where("slug = ?", c.Param("slug")).
-		First(&resumeModel)
+	resumeModel := resume.Get(c.Param("id"))
 
 	if resumeModel.ID == 0 {
 		response.Abort404(c)
@@ -224,11 +219,7 @@ func (ctrl *ResumesController) Delete(c *gin.Context) {
 }
 
 func (ctrl *ResumesController) AddEducation(c *gin.Context) {
-	var resumeModel resume.Resume
-	database.DB.Model(&resume.Resume{}).
-		Preload(clause.Associations).
-		Where("slug = ?", c.Param("slug")).
-		First(&resumeModel)
+	resumeModel := resume.Get(c.Param("id"))
 
 	if resumeModel.ID == 0 {
 		response.Abort404(c)
@@ -264,11 +255,7 @@ func (ctrl *ResumesController) AddEducation(c *gin.Context) {
 }
 
 func (ctrl *ResumesController) AddWorkExperience(c *gin.Context) {
-	var resumeModel resume.Resume
-	database.DB.Model(&resume.Resume{}).
-		Preload(clause.Associations).
-		Where("slug = ?", c.Param("slug")).
-		First(&resumeModel)
+	resumeModel := resume.Get(c.Param("id"))
 
 	if resumeModel.ID == 0 {
 		response.Abort404(c)
@@ -304,11 +291,7 @@ func (ctrl *ResumesController) AddWorkExperience(c *gin.Context) {
 }
 
 func (ctrl *ResumesController) AddProject(c *gin.Context) {
-	var resumeModel resume.Resume
-	database.DB.Model(&resume.Resume{}).
-		Preload(clause.Associations).
-		Where("slug = ?", c.Param("slug")).
-		First(&resumeModel)
+	resumeModel := resume.Get(c.Param("id"))
 
 	if resumeModel.ID == 0 {
 		response.Abort404(c)
@@ -344,14 +327,7 @@ func (ctrl *ResumesController) AddProject(c *gin.Context) {
 }
 
 func (ctrl *ResumesController) AddOther(c *gin.Context) {
-	var resumeModel resume.Resume
-	database.DB.Model(&resume.Resume{}).
-		Preload("Education.EducationDetails").
-		Preload("Project.ProjectDetails").
-		Preload("WorkExperience.WorkExperienceDetails").
-		Preload(clause.Associations).
-		Where("slug = ?", c.Param("slug")).
-		First(&resumeModel)
+	resumeModel := resume.Get(c.Param("id"))
 
 	if resumeModel.ID == 0 {
 		response.Abort404(c)
@@ -391,7 +367,7 @@ func (ctrl *ResumesController) AddOther(c *gin.Context) {
 }
 
 func (ctrl *ResumesController) UpdateResumeLayoutType(c *gin.Context) {
-	resumeModel := resume.GetBy("slug", c.Param("slug"))
+	resumeModel := resume.Get(c.Param("id"))
 
 	if resumeModel.ID == 0 {
 		response.Abort404(c)
@@ -442,11 +418,7 @@ func (ctrl *ResumesController) UpdateResumeLayoutType(c *gin.Context) {
 }
 
 func (ctrl *ResumesController) UpdateResumeBasic(c *gin.Context) {
-	var resumeModel resume.Resume
-	database.DB.Model(&resume.Resume{}).
-		Preload(clause.Associations).
-		Where("slug = ?", c.Param("slug")).
-		First(&resumeModel)
+	resumeModel := resume.Get(c.Param("id"))
 
 	if resumeModel.ID == 0 {
 		response.Abort404(c)
@@ -478,11 +450,7 @@ func (ctrl *ResumesController) UpdateResumeBasic(c *gin.Context) {
 }
 
 func (ctrl *ResumesController) UpdateEducation(c *gin.Context) {
-	var resumeModel resume.Resume
-	database.DB.Model(&resume.Resume{}).
-		Preload(clause.Associations).
-		Where("slug = ?", c.Param("slug")).
-		First(&resumeModel)
+	resumeModel := resume.Get(c.Param("id"))
 
 	if resumeModel.ID == 0 {
 		response.Abort404(c)
@@ -525,11 +493,7 @@ func (ctrl *ResumesController) UpdateEducation(c *gin.Context) {
 }
 
 func (ctrl *ResumesController) UpdateWorkExperience(c *gin.Context) {
-	var resumeModel resume.Resume
-	database.DB.Model(&resume.Resume{}).
-		Preload(clause.Associations).
-		Where("slug = ?", c.Param("slug")).
-		First(&resumeModel)
+	resumeModel := resume.Get(c.Param("id"))
 
 	if resumeModel.ID == 0 {
 		response.Abort404(c)
@@ -572,14 +536,7 @@ func (ctrl *ResumesController) UpdateWorkExperience(c *gin.Context) {
 }
 
 func (ctrl *ResumesController) UpdateProject(c *gin.Context) {
-	var resumeModel resume.Resume
-	database.DB.Model(&resume.Resume{}).
-		Preload("Education.EducationDetails").
-		Preload("Project.ProjectDetails").
-		Preload("WorkExperience.WorkExperienceDetails").
-		Preload(clause.Associations).
-		Where("slug = ?", c.Param("slug")).
-		First(&resumeModel)
+	resumeModel := resume.Get(c.Param("id"))
 
 	if resumeModel.ID == 0 {
 		response.Abort404(c)
@@ -622,14 +579,7 @@ func (ctrl *ResumesController) UpdateProject(c *gin.Context) {
 }
 
 func (ctrl *ResumesController) UpdateOthers(c *gin.Context) {
-	var resumeModel resume.Resume
-	database.DB.Model(&resume.Resume{}).
-		Preload("Education.EducationDetails").
-		Preload("Project.ProjectDetails").
-		Preload("WorkExperience.WorkExperienceDetails").
-		Preload(clause.Associations).
-		Where("slug = ?", c.Param("slug")).
-		First(&resumeModel)
+	resumeModel := resume.Get(c.Param("id"))
 
 	if resumeModel.ID == 0 {
 		response.Abort404(c)

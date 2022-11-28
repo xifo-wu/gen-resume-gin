@@ -9,12 +9,12 @@ import (
 type ResumeBasicField struct {
 	models.BaseModel
 
-	// ResumeBasicID uint64 `json:"-"`
-	Value     string `json:"value"`
-	Visible   bool   `json:"visible"`
-	Label     string `json:"label"`
-	Icon      string `json:"icon"`
-	ShowLabel bool   `json:"showLabel"`
+	ResumeBasicID uint64 `json:"-"`
+	Value         string `json:"value"`
+	Visible       bool   `json:"visible"`
+	Label         string `json:"label"`
+	Icon          string `json:"icon"`
+	ShowLabel     bool   `json:"showLabel"`
 }
 
 func (resumeBasicField *ResumeBasicField) Create() {
