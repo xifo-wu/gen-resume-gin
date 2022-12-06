@@ -11,7 +11,20 @@ import (
 )
 
 func Get(id string) (resume Resume) {
-	database.DB.Model(&Resume{}).Preload(clause.Associations).Where("id", id).First(&resume)
+	database.DB.Model(&Resume{}).
+		Preload("ResumeBasic.Birthday").
+		Preload("ResumeBasic.Avatar").
+		Preload("ResumeBasic.Age").
+		Preload("ResumeBasic.Email").
+		Preload("ResumeBasic.Job").
+		Preload("ResumeBasic.Mobile").
+		Preload("ResumeBasic.Name").
+		Preload("ResumeBasic.Website").
+		Preload("ResumeBasic.EducationalQualifications").
+		Preload("Education.EducationDetails").
+		Preload("Project.ProjectDetails").
+		Preload("WorkExperience.WorkExperienceDetails").
+		Preload(clause.Associations).Where("id", id).First(&resume)
 	return
 }
 
@@ -20,6 +33,7 @@ func GetBy(field, value string) (resume Resume) {
 	database.DB.Where(conditions, value).
 		Preload("ResumeBasic.Birthday").
 		Preload("ResumeBasic.Avatar").
+		Preload("ResumeBasic.Age").
 		Preload("ResumeBasic.Email").
 		Preload("ResumeBasic.Job").
 		Preload("ResumeBasic.Mobile").
