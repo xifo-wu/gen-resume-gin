@@ -18,10 +18,13 @@ type ResumeBasic struct {
 	AvatarID                    uint64           `json:"-"`
 	EmailID                     uint64           `json:"-"`
 	JobID                       uint64           `json:"-"`
+	JobYearID                   uint64           `json:"-"`
 	MobileID                    uint64           `json:"-"`
 	NameID                      uint64           `json:"-"`
 	WebsiteID                   uint64           `json:"-"`
 	EducationalQualificationsID uint64           `json:"-"`
+	InAWord                     string           `json:"inAWord"`
+	JobYear                     ResumeBasicField `gorm:"foreignKey:AgeID" json:"jobYear"`
 	Age                         ResumeBasicField `gorm:"foreignKey:AgeID" json:"age"`
 	Birthday                    ResumeBasicField `gorm:"foreignKey:BirthdayID" json:"birthday"`
 	Avatar                      ResumeBasicField `gorm:"foreignKey:AvatarID" json:"avatar"`

@@ -20,6 +20,7 @@ func Get(id string) (resume Resume) {
 		Preload("ResumeBasic.Mobile").
 		Preload("ResumeBasic.Name").
 		Preload("ResumeBasic.Website").
+		Preload("ResumeBasic.JobYear").
 		Preload("ResumeBasic.EducationalQualifications").
 		Preload("Education.EducationDetails").
 		Preload("Project.ProjectDetails").
@@ -39,6 +40,7 @@ func GetBy(field, value string) (resume Resume) {
 		Preload("ResumeBasic.Mobile").
 		Preload("ResumeBasic.Name").
 		Preload("ResumeBasic.Website").
+		Preload("ResumeBasic.JobYear").
 		Preload("ResumeBasic.EducationalQualifications").
 		Preload("Education.EducationDetails").
 		Preload("Project.ProjectDetails").

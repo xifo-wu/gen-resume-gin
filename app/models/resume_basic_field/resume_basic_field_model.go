@@ -14,7 +14,8 @@ type ResumeBasicField struct {
 	Visible       bool   `json:"visible"`
 	Label         string `json:"label"`
 	Icon          string `json:"icon"`
-	ShowLabel     bool   `json:"showLabel"`
+	IsShowLabel   bool   `json:"isShowLabel"`
+	IsShowIcon    bool   `json:"isShowIcon"`
 }
 
 func (resumeBasicField *ResumeBasicField) Create() {

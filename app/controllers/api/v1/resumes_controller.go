@@ -439,6 +439,10 @@ func (ctrl *ResumesController) UpdateResumeBasic(c *gin.Context) {
 	request.ID = resumeModel.ResumeBasic.ID
 	resumeModel.ResumeBasic = &request
 
+	fmt.Println("===================================")
+	fmt.Println(resumeModel)
+	fmt.Println("===================================")
+
 	result := database.DB.Session(&gorm.Session{FullSaveAssociations: true}).
 		Updates(&resumeModel)
 
